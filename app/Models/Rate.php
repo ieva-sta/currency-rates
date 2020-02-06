@@ -12,7 +12,8 @@ class Rate extends Model
      */
     protected $fillable = [
         'currency_id',
-        'price'
+        'price',
+        'date'
     ];
 
     /**

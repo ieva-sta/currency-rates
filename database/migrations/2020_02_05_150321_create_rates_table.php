@@ -19,7 +19,8 @@ class CreateRatesTable extends Migration
             $table->unsignedBigInteger('currency_id');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
 
-            $table->float('price');
+            $table->float('price', 14, 8);
+            $table->date('date');
 
             $table->timestamps();
         });

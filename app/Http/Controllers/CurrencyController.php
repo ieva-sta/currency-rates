@@ -2,84 +2,59 @@
 
 namespace App\Http\Controllers;
 
-use App\Currency;
-use Illuminate\Http\Request;
+use App\Models\Currency;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Carbon;
+use Illuminate\View\View;
 
 class CurrencyController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Return all currencies that have data for rates
      */
     public function index()
     {
-        //
-    }
+        $currencies = Currency::has('rates')->paginate(7);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('currency.index')->with([
+            'currencies' => $currencies
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Currency $currency
-     * @return \Illuminate\Http\Response
+     * @param Currency $currency
+     * @return Factory|View
      */
     public function show(Currency $currency)
     {
-        //
+        return view('currency.show')->with([
+            'currency' => $currency
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Currency $currency
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Currency $currency)
-    {
-        //
-    }
 
     /**
-     * Update the specified resource in storage.
+     * Fetch currency rates from the last 30 days
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Currency $currency
-     * @return \Illuminate\Http\Response
+     * @param Currency $currency
+     * @param int $days
+     * @return JsonResponse
      */
-    public function update(Request $request, Currency $currency)
+    public function graph(Currency $currency, int $days): JsonResponse
     {
-        //
-    }
+        $rates = $currency->rates()
+            ->where('date', '>=', Carbon::now()->subDays($days))
+            ->orderBy('date');
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Currency $currency
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Currency $currency)
-    {
-        //
+        $data = [
+            'labels' => $rates->pluck('date')->toArray(),
+            'rates'  => $rates->pluck('price')->toArray()
+        ];
+
+        return response()->json($data);
     }
 }
