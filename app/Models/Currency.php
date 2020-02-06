@@ -18,6 +18,21 @@ class Currency extends Model
     ];
 
     /**
+     * @var array
+     */
+    protected $with = ['rates'];
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'code';
+    }
+
+    /**
      * @return HasMany
      */
     public function rates(): HasMany

@@ -7,6 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.Chart = require('chart.js')
 
 /**
  * The following block of code may be used to automatically register your
@@ -30,3 +31,20 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+let currencyGraph = document.getElementById('currencyGraph').getContext('2d');
+let graph = new Chart(currencyGraph, {
+    type: 'line',
+    data: {
+        labels: ['test1', 'test2', 'test3', 'test4', 'test5'],
+        datasets: [{
+            label: 'rate',
+            data: [12, 8, 9, 14, 7],
+            lineTension: 1,
+            backgroundColor: 'rgba(97, 123, 227, .1)',
+            borderColor: 'rgba(97, 123, 227, .6)'
+        }],
+
+    }
+});
+

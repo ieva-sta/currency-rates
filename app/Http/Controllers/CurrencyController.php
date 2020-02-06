@@ -30,7 +30,7 @@ class CurrencyController extends Controller
     public function show(Currency $currency)
     {
         return view('currency.show')->with([
-            'currency' => $currency->with('rates')
+            'currency' => $currency
         ]);
     }
 

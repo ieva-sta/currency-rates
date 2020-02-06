@@ -4,20 +4,24 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10 bg-white shadow">
-                <table class="table">
+                <table class="table table-hover">
                     <tbody>
                     @foreach($currencies as $currency)
                         <tr>
-                            <td>{{ $currency->symbol }}</td>
-                            <td>{{ $currency->code }}</td>
-                            <td>{{ $currency->title }}</td>
+                            <td><a href="{{ route('currency.show', $currency->code) }}"
+                                   class="d-block">{{ $currency->symbol }}</a></td>
+                            <td><a href="{{ route('currency.show', $currency->code) }}"
+                                   class="d-block">{{ $currency->code }}</a></td>
+                            <td><a href="{{ route('currency.show', $currency->code) }}"
+                                   class="d-block">{{ $currency->title }}</a></td>
                             <td>
-                                {{ $currency->rates->last()->price }}
+                                <a href="{{ route('currency.show', $currency->code) }}"
+                                   class="d-block">{{ $currency->rates->last()->price }}</a>
                             </td>
-                            <td>
-                                <i class="ml-1 fas fa-caret-{{ $currency->getTrend()['trend'] ? 'up' : 'down' }}"></i>
-                                {{ $currency->getTrend()['percentage'] }} %
-                            </td>
+                            <td><a href="{{ route('currency.show', $currency->code) }}" class="d-block">
+                                    <i class="ml-1 fas fa-caret-{{ $currency->getTrend()['trend'] ? 'up' : 'down' }}"></i>
+                                    {{ $currency->getTrend()['percentage'] }} %
+                                </a></td>
                         </tr>
                     @endforeach
                     </tbody>
