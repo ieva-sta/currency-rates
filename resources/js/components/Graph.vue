@@ -16,7 +16,7 @@
             }
         },
         mounted() {
-            axios.get('/valuta/' + this.currency.code + '/graph/' + this.days)
+            axios.get('/currency/' + this.currency.code + '/graph/' + this.days)
                 .then(response => {
                     this.labels = response.data.labels
                     this.rates = response.data.rates

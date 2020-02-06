@@ -1899,6 +1899,106 @@ module.exports = {
 
 /***/ }),
 
+    /***/
+    "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DataTable.vue?vue&type=script&lang=js&":
+    /*!********************************************************************************************************************************************************************!*\
+      !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DataTable.vue?vue&type=script&lang=js& ***!
+      \********************************************************************************************************************************************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony import */
+        var _Graph_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Graph.vue */ "./resources/js/components/Graph.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+        /* harmony default export */
+        __webpack_exports__["default"] = ({
+            components: {
+                Graph: _Graph_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+            },
+            props: {
+                fetchUrl: {
+                    type: String,
+                    required: true
+                },
+                columns: {
+                    type: Array,
+                    required: true
+                }
+            },
+            data: function data() {
+                return {
+                    tableData: []
+                };
+            },
+            created: function created() {
+                return this.fetchData(this.fetchUrl);
+            },
+            methods: {
+                fetchData: function fetchData(url) {
+                    var _this = this;
+
+                    axios.get(url).then(function (data) {
+                        _this.tableData = data.data.data;
+                    });
+                }
+            }
+        });
+
+        /***/
+    }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Graph.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Graph.vue?vue&type=script&lang=js& ***!
@@ -1933,7 +2033,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/valuta/' + this.currency.code + '/graph/' + this.days).then(function (response) {
+      axios.get('/currency/' + this.currency.code + '/graph/' + this.days).then(function (response) {
       _this.labels = response.data.labels;
       _this.rates = response.data.rates;
 
@@ -8081,7 +8181,7 @@ function getAlpha(string) {
 // generators
 function hexString(rgba, a) {
    var a = (a !== undefined && rgba.length === 3) ? a : rgba[3];
-   return "#" + hexDouble(rgba[0]) 
+   return "#" + hexDouble(rgba[0])
               + hexDouble(rgba[1])
               + hexDouble(rgba[2])
               + (
@@ -71135,6 +71235,163 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+    /***/
+    "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DataTable.vue?vue&type=template&id=4b997e69&scoped=true&":
+    /*!************************************************************************************************************************************************************************************************************************!*\
+      !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DataTable.vue?vue&type=template&id=4b997e69&scoped=true& ***!
+      \************************************************************************************************************************************************************************************************************************/
+    /*! exports provided: render, staticRenderFns */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "render", function () {
+            return render;
+        });
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "staticRenderFns", function () {
+            return staticRenderFns;
+        });
+        var render = function () {
+            var _vm = this
+            var _h = _vm.$createElement
+            var _c = _vm._self._c || _h
+            return _c("div", {staticClass: "data-table"}, [
+                _c("table", {staticClass: "table table-hover"}, [
+                    _c(
+                        "tbody",
+                        [
+                            _vm.tableData.length === 0
+                                ? _c("tr", {}, [
+                                    _c(
+                                        "td",
+                                        {
+                                            staticClass: "lead text-center",
+                                            attrs: {colspan: _vm.columns.length + 1}
+                                        },
+                                        [_vm._v("No data found.")]
+                                    )
+                                ])
+                                : _vm._l(_vm.tableData, function (currency, key1) {
+                                    return _c(
+                                        "tr",
+                                        {key: currency.id, staticClass: "m-datatable__row"},
+                                        [
+                                            _c("td", [
+                                                _c("a", {staticClass: "d-flex", attrs: {href: "#"}}, [
+                                                    _c(
+                                                        "div",
+                                                        {
+                                                            staticClass:
+                                                                "currency-logo d-flex align-items-center justify-content-center font-weight-bold"
+                                                        },
+                                                        [
+                                                            _vm._v(
+                                                                "\n                        " +
+                                                                _vm._s(currency.symbol) +
+                                                                "\n                    "
+                                                            )
+                                                        ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                        "div",
+                                                        {
+                                                            staticClass:
+                                                                "d-flex flex-column justify-content-center ml-3"
+                                                        },
+                                                        [
+                                                            _c("h5", {staticClass: "m-0 font-weight-bold"}, [
+                                                                _vm._v(
+                                                                    "\n                            " +
+                                                                    _vm._s(currency.code) +
+                                                                    "\n                        "
+                                                                )
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c("p", {staticClass: "m-0"}, [
+                                                                _vm._v(
+                                                                    "\n                            " +
+                                                                    _vm._s(currency.title) +
+                                                                    "\n                        "
+                                                                )
+                                                            ])
+                                                        ]
+                                                    )
+                                                ])
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                                _c(
+                                                    "a",
+                                                    {
+                                                        staticClass: "d-flex align-items-center",
+                                                        attrs: {href: "#"}
+                                                    },
+                                                    [
+                                                        _c("h5", {staticClass: "m-0"}, [
+                                                            _vm._v(_vm._s(currency.rate))
+                                                        ])
+                                                    ]
+                                                )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                                _c(
+                                                    "a",
+                                                    {
+                                                        staticClass:
+                                                            "d-flex align-items-center justify-content-center",
+                                                        attrs: {href: "#"}
+                                                    },
+                                                    [
+                                                        _c(
+                                                            "div",
+                                                            [
+                                                                _c("graph", {
+                                                                    attrs: {
+                                                                        currency: currency,
+                                                                        "graph-id": currency.id,
+                                                                        "show-labels": false,
+                                                                        days: 7
+                                                                    }
+                                                                })
+                                                            ],
+                                                            1
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c("div", {staticClass: "d-flex"}, [
+                                                            _c("i", {
+                                                                staticClass: "mr-1 fas",
+                                                                class: currency.trend.trend
+                                                                    ? "fa-caret-up"
+                                                                    : "fa-caret-down"
+                                                            }),
+                                                            _vm._v(" "),
+                                                            _c("h6", [
+                                                                _vm._v(_vm._s(currency.trend.percentage) + " %")
+                                                            ])
+                                                        ])
+                                                    ]
+                                                )
+                                            ])
+                                        ]
+                                    )
+                                })
+                        ],
+                        2
+                    )
+                ])
+            ])
+        }
+        var staticRenderFns = []
+        render._withStripped = true
+
+
+        /***/
+    }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Graph.vue?vue&type=template&id=e73c3a1a&":
 /*!********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Graph.vue?vue&type=template&id=e73c3a1a& ***!
@@ -83348,6 +83605,7 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('graph', __webpack_require__(/*! ./components/Graph.vue */ "./resources/js/components/Graph.vue")["default"]);
+        Vue.component('data-table', __webpack_require__(/*! ./components/DataTable */ "./resources/js/components/DataTable.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -83403,7 +83661,92 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     encrypted: true
 // });
 
-/***/ }),
+        /***/
+    }),
+
+    /***/
+    "./resources/js/components/DataTable.vue":
+    /*!***********************************************!*\
+      !*** ./resources/js/components/DataTable.vue ***!
+      \***********************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony import */
+        var _DataTable_vue_vue_type_template_id_4b997e69_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DataTable.vue?vue&type=template&id=4b997e69&scoped=true& */ "./resources/js/components/DataTable.vue?vue&type=template&id=4b997e69&scoped=true&");
+        /* harmony import */
+        var _DataTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DataTable.vue?vue&type=script&lang=js& */ "./resources/js/components/DataTable.vue?vue&type=script&lang=js&");
+        /* empty/unused harmony star reexport *//* harmony import */
+        var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+        /* normalize component */
+
+        var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+            _DataTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+            _DataTable_vue_vue_type_template_id_4b997e69_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+            _DataTable_vue_vue_type_template_id_4b997e69_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+            false,
+            null,
+            "4b997e69",
+            null
+        )
+
+        /* hot reload */
+        if (false) {
+            var api;
+        }
+        component.options.__file = "resources/js/components/DataTable.vue"
+        /* harmony default export */
+        __webpack_exports__["default"] = (component.exports);
+
+        /***/
+    }),
+
+    /***/
+    "./resources/js/components/DataTable.vue?vue&type=script&lang=js&":
+    /*!************************************************************************!*\
+      !*** ./resources/js/components/DataTable.vue?vue&type=script&lang=js& ***!
+      \************************************************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony import */
+        var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DataTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./DataTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DataTable.vue?vue&type=script&lang=js&");
+        /* empty/unused harmony star reexport */ /* harmony default export */
+        __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DataTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+        /***/
+    }),
+
+    /***/
+    "./resources/js/components/DataTable.vue?vue&type=template&id=4b997e69&scoped=true&":
+    /*!******************************************************************************************!*\
+      !*** ./resources/js/components/DataTable.vue?vue&type=template&id=4b997e69&scoped=true& ***!
+      \******************************************************************************************/
+    /*! exports provided: render, staticRenderFns */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony import */
+        var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DataTable_vue_vue_type_template_id_4b997e69_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./DataTable.vue?vue&type=template&id=4b997e69&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DataTable.vue?vue&type=template&id=4b997e69&scoped=true&");
+        /* harmony reexport (safe) */
+        __webpack_require__.d(__webpack_exports__, "render", function () {
+            return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DataTable_vue_vue_type_template_id_4b997e69_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"];
+        });
+
+        /* harmony reexport (safe) */
+        __webpack_require__.d(__webpack_exports__, "staticRenderFns", function () {
+            return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DataTable_vue_vue_type_template_id_4b997e69_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"];
+        });
+
+
+        /***/ }),
 
 /***/ "./resources/js/components/Graph.vue":
 /*!*******************************************!*\
@@ -83432,7 +83775,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -83452,7 +83795,7 @@ component.options.__file = "resources/js/components/Graph.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Graph_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Graph.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Graph.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Graph_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Graph_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 

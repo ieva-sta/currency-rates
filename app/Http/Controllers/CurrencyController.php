@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CurrencyResource;
 use App\Models\Currency;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
@@ -21,6 +22,13 @@ class CurrencyController extends Controller
         return view('currency.index')->with([
             'currencies' => $currencies
         ]);
+    }
+
+    public function getCurrencyData()
+    {
+        $currencies = Currency::has('rates')->get();
+
+        return CurrencyResource::collection($currencies);
     }
 
     /**
