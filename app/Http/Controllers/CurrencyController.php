@@ -41,12 +41,13 @@ class CurrencyController extends Controller
      * Fetch currency rates from the last 30 days
      *
      * @param Currency $currency
+     * @param int $days
      * @return JsonResponse
      */
-    public function graph(Currency $currency): JsonResponse
+    public function graph(Currency $currency, int $days): JsonResponse
     {
         $rates = $currency->rates()
-            ->where('date', '>=', Carbon::now()->subDays(30))
+            ->where('date', '>=', Carbon::now()->subDays($days))
             ->orderBy('date');
 
         $data = [

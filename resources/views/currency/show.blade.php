@@ -6,7 +6,8 @@
             <div class="col-10 bg-white shadow">
                 <h1 class="text-center">{{ $currency->title }}</h1>
 
-                <graph :currency="{{ $currency }}"></graph>
+                <graph :id="graph-{{ $currency->id }}" :currency="{{ $currency }}" :show-labels="true"
+                       :days="30"></graph>
             </div>
         </div>
     </div>

@@ -2026,17 +2026,19 @@
 //
         /* harmony default export */
         __webpack_exports__["default"] = ({
-            props: ['currency'],
+            props: ['currency', 'showLabels', 'days', 'graphId'],
             data: function data() {
                 return {
                     labels: [],
-                    rates: []
+                    rates: [],
+                    width: this.showLabels ? '900' : '80'
                 };
             },
             mounted: function mounted() {
                 var _this = this;
 
-                axios.get('/valuta/' + this.currency.code + '/graph').then(function (response) {
+                console.log(this.graphId);
+                axios.get('/valuta/' + this.currency.code + '/graph/' + this.days).then(function (response) {
                     _this.labels = response.data.labels;
                     _this.rates = response.data.rates;
 
@@ -2047,8 +2049,8 @@
             },
             methods: {
                 getGraph: function getGraph() {
-                    console.log(this.labels);
-                    var currencyGraph = document.getElementById('currencyGraph').getContext('2d');
+                    var currencyGraph = document.getElementById(this.graphId).getContext('2d');
+                    console.log(this.graphId);
                     var graph = new Chart(currencyGraph, {
                         type: 'line',
                         data: {
@@ -2060,6 +2062,30 @@
                                 backgroundColor: 'rgba(97, 123, 227, .1)',
                                 borderColor: 'rgba(97, 123, 227, .6)'
                             }]
+                        },
+                        options: {
+                            legend: {
+                                display: false
+                            },
+                            responsive: false,
+                            scales: {
+                                xAxes: [{
+                                    ticks: {
+                                        display: this.showLabels
+                                    },
+                                    gridLines: {
+                                        display: false
+                                    }
+                                }],
+                                yAxes: [{
+                                    ticks: {
+                                        display: this.showLabels
+                                    },
+                                    gridLines: {
+                                        display: this.showLabels
+                                    }
+                                }]
+                            }
                         }
                     });
                 }
@@ -71831,18 +71857,11 @@
             var _vm = this
             var _h = _vm.$createElement
             var _c = _vm._self._c || _h
-            return _vm._m(0)
+            return _c("div", {staticClass: "container"}, [
+                _c("canvas", {attrs: {id: _vm.graphId, width: this.width}})
+            ])
         }
-        var staticRenderFns = [
-            function () {
-                var _vm = this
-                var _h = _vm.$createElement
-                var _c = _vm._self._c || _h
-                return _c("div", {staticClass: "container"}, [
-                    _c("canvas", {attrs: {id: "currencyGraph"}})
-                ])
-            }
-        ]
+        var staticRenderFns = []
         render._withStripped = true
 
 

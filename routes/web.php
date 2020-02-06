@@ -14,4 +14,4 @@
 Route::get('/', 'CurrencyController@index')->name('currency.index');
 Route::get('valuta/{currency}', 'CurrencyController@show')->name('currency.show');
 
-Route::get('valuta/{currency}/graph', 'CurrencyController@graph')->name('currency.graph');
+Route::get('valuta/{currency}/graph/{days}', 'CurrencyController@graph')->name('currency.graph');

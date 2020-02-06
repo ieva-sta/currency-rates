@@ -18,10 +18,15 @@
                                 <a href="{{ route('currency.show', $currency->code) }}"
                                    class="d-block">{{ $currency->rates->last()->price }}</a>
                             </td>
-                            <td><a href="{{ route('currency.show', $currency->code) }}" class="d-block">
+                            <td>
+                                <a href="{{ route('currency.show', $currency->code) }}" class="d-flex">
+                                    <graph :currency="{{ $currency }}" :graph-id="graph-{{ $currency->code }}"
+                                           :show-labels="false" :days="7"></graph>
+
                                     <i class="ml-1 fas fa-caret-{{ $currency->getTrend()['trend'] ? 'up' : 'down' }}"></i>
                                     {{ $currency->getTrend()['percentage'] }} %
-                                </a></td>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
