@@ -2071,7 +2071,8 @@
                 return {
                     labels: [],
                     rates: [],
-                    width: this.showLabels ? '900' : '120'
+                    height: this.showLabels ? '400' : '50',
+                    width: this.showLabels ? '900' : '150'
                 };
             },
             mounted: function mounted() {
@@ -71922,7 +71923,9 @@
             var _h = _vm.$createElement
             var _c = _vm._self._c || _h
             return _c("div", {staticClass: "container"}, [
-                _c("canvas", {attrs: {id: _vm.graphId, width: this.width}})
+                _c("canvas", {
+                    attrs: {id: _vm.graphId, height: this.height, width: this.width}
+                })
             ])
         }
         var staticRenderFns = []

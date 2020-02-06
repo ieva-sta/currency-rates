@@ -16,7 +16,7 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        $currencies = Currency::has('rates')->paginate(10);
+        $currencies = Currency::has('rates')->paginate(7);
 
         return view('currency.index')->with([
             'currencies' => $currencies

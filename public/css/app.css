@@ -16812,6 +16812,10 @@ readers do not read off random characters that represent icons */
     color: #fa163f;
 }
 
+td a {
+    color: #777;
+}
+
 td a:hover {
     text-decoration: none;
 }

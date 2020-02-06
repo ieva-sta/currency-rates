@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <canvas :id="graphId" :width="this.width"></canvas>
+        <canvas :id="graphId" :height="this.height" :width="this.width"></canvas>
     </div>
 </template>
 
@@ -11,7 +11,8 @@
             return {
                 labels: [],
                 rates: [],
-                width: this.showLabels ? '900' : '120'
+                height: this.showLabels ? '400' : '50',
+                width: this.showLabels ? '900' : '150'
             }
         },
         mounted() {
