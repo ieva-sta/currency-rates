@@ -42,6 +42,13 @@ class CurrencyController extends Controller
      */
     public function graph(Currency $currency)
     {
-        //
+        $rates = $currency->rates->sortByDesc('date');
+
+        $data = [
+            'labels' => $rates->pluck('date')->toArray(),
+            'rates'  => $rates->pluck('price')->toArray()
+        ];
+
+        return response()->json($data);
     }
 }
