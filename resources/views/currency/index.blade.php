@@ -6,7 +6,7 @@
             <div class="col-10 bg-white shadow">
                 <table class="table table-hover">
                     <tbody>
-                    @foreach($currencies as $currency)
+                    @foreach($currencies as $key => $currency)
                         <tr>
                             <td><a href="{{ route('currency.show', $currency->code) }}"
                                    class="d-block">{{ $currency->symbol }}</a></td>
@@ -20,7 +20,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('currency.show', $currency->code) }}" class="d-flex">
-                                    <graph :currency="{{ $currency }}" :graph-id="graph-{{ $currency->code }}"
+                                    <graph :currency="{{ $currency }}" :graph-id="{{ $key }}"
                                            :show-labels="false" :days="7"></graph>
 
                                     <i class="ml-1 fas fa-caret-{{ $currency->getTrend()['trend'] ? 'up' : 'down' }}"></i>

@@ -2018,6 +2018,46 @@
 
         "use strict";
         __webpack_require__.r(__webpack_exports__);
+
+        function ownKeys(object, enumerableOnly) {
+            var keys = Object.keys(object);
+            if (Object.getOwnPropertySymbols) {
+                var symbols = Object.getOwnPropertySymbols(object);
+                if (enumerableOnly) symbols = symbols.filter(function (sym) {
+                    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+                });
+                keys.push.apply(keys, symbols);
+            }
+            return keys;
+        }
+
+        function _objectSpread(target) {
+            for (var i = 1; i < arguments.length; i++) {
+                var source = arguments[i] != null ? arguments[i] : {};
+                if (i % 2) {
+                    ownKeys(Object(source), true).forEach(function (key) {
+                        _defineProperty(target, key, source[key]);
+                    });
+                } else if (Object.getOwnPropertyDescriptors) {
+                    Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+                } else {
+                    ownKeys(Object(source)).forEach(function (key) {
+                        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+                    });
+                }
+            }
+            return target;
+        }
+
+        function _defineProperty(obj, key, value) {
+            if (key in obj) {
+                Object.defineProperty(obj, key, {value: value, enumerable: true, configurable: true, writable: true});
+            } else {
+                obj[key] = value;
+            }
+            return obj;
+        }
+
 //
 //
 //
@@ -2031,13 +2071,12 @@
                 return {
                     labels: [],
                     rates: [],
-                    width: this.showLabels ? '900' : '80'
+                    width: this.showLabels ? '900' : '120'
                 };
             },
             mounted: function mounted() {
                 var _this = this;
 
-                console.log(this.graphId);
                 axios.get('/valuta/' + this.currency.code + '/graph/' + this.days).then(function (response) {
                     _this.labels = response.data.labels;
                     _this.rates = response.data.rates;
@@ -2050,7 +2089,46 @@
             methods: {
                 getGraph: function getGraph() {
                     var currencyGraph = document.getElementById(this.graphId).getContext('2d');
-                    console.log(this.graphId);
+                    var smallGraphOptions = {
+                        elements: {
+                            point: {
+                                radius: 0
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    display: this.showLabels
+                                },
+                                gridLines: {
+                                    display: false
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    display: this.showLabels
+                                },
+                                gridLines: {
+                                    display: this.showLabels
+                                }
+                            }]
+                        }
+                    };
+                    var largeGraphOptions = {
+                        scales: {
+                            xAxes: [{
+                                gridLines: {
+                                    display: false
+                                }
+                            }]
+                        }
+                    };
+                    var options = {
+                        legend: {
+                            display: false
+                        },
+                        responsive: false
+                    };
                     var graph = new Chart(currencyGraph, {
                         type: 'line',
                         data: {
@@ -2063,30 +2141,7 @@
                                 borderColor: 'rgba(97, 123, 227, .6)'
                             }]
                         },
-                        options: {
-                            legend: {
-                                display: false
-                            },
-                            responsive: false,
-                            scales: {
-                                xAxes: [{
-                                    ticks: {
-                                        display: this.showLabels
-                                    },
-                                    gridLines: {
-                                        display: false
-                                    }
-                                }],
-                                yAxes: [{
-                                    ticks: {
-                                        display: this.showLabels
-                                    },
-                                    gridLines: {
-                                        display: this.showLabels
-                                    }
-                                }]
-                            }
-                        }
+                        options: _objectSpread({}, options, {}, this.showLabels && largeGraphOptions, {}, !this.showLabels && smallGraphOptions)
                     });
                 }
             }

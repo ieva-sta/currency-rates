@@ -11,11 +11,10 @@
             return {
                 labels: [],
                 rates: [],
-                width: this.showLabels ? '900' : '80'
+                width: this.showLabels ? '900' : '120'
             }
         },
         mounted() {
-            console.log(this.graphId)
             axios.get('/valuta/' + this.currency.code + '/graph/' + this.days)
                 .then(response => {
                     this.labels = response.data.labels
@@ -28,7 +27,49 @@
         methods: {
             getGraph() {
                 let currencyGraph = document.getElementById(this.graphId).getContext('2d');
-                console.log(this.graphId)
+                let smallGraphOptions = {
+                    elements: {
+                        point: {
+                            radius: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                display: this.showLabels,
+                            },
+                            gridLines: {
+                                display: false,
+                            },
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                display: this.showLabels,
+                            },
+                            gridLines: {
+                                display: this.showLabels,
+                            }
+                        }]
+                    }
+                };
+
+                let largeGraphOptions = {
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false,
+                            },
+                        }],
+                    }
+                };
+
+                let options = {
+                    legend: {
+                        display: false
+                    },
+                    responsive: false
+                };
+
                 let graph = new Chart(currencyGraph, {
                     type: 'line',
                     data: {
@@ -42,30 +83,7 @@
                         }],
 
                     },
-                    options: {
-                        legend: {
-                            display: false
-                        },
-                        responsive: false,
-                        scales: {
-                            xAxes: [{
-                                ticks: {
-                                    display: this.showLabels,
-                                },
-                                gridLines: {
-                                    display: false,
-                                },
-                            }],
-                            yAxes: [{
-                                ticks: {
-                                    display: this.showLabels,
-                                },
-                                gridLines: {
-                                    display: this.showLabels,
-                                }
-                            }]
-                        }
-                    }
+                    options: {...options, ...(this.showLabels) && largeGraphOptions, ...(!this.showLabels) && smallGraphOptions}
                 });
             }
         }
