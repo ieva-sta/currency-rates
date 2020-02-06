@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Currency;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
 class CurrencyController extends Controller
@@ -34,15 +36,18 @@ class CurrencyController extends Controller
         ]);
     }
 
+
     /**
-     * Remove the specified resource from storage.
+     * Fetch currency rates from the last 30 days
      *
      * @param Currency $currency
-     * @return void
+     * @return JsonResponse
      */
-    public function graph(Currency $currency)
+    public function graph(Currency $currency): JsonResponse
     {
-        $rates = $currency->rates->sortByDesc('date');
+        $rates = $currency->rates()
+            ->where('date', '>=', Carbon::now()->subDays(30))
+            ->orderBy('date');
 
         $data = [
             'labels' => $rates->pluck('date')->toArray(),
