@@ -25,9 +25,9 @@ class Currency extends Model
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function getTrendAttribute(): string
+    public function getTrendAttribute(): bool
     {
         $rates = $this->rates()->orderBy('date')->get();
         $latestRate = $rates->last()->price;
@@ -35,6 +35,6 @@ class Currency extends Model
         $rates = $rates->slice(0, -1);
         $comparisonRate = $rates->last()->price;
 
-        return $latestRate > $comparisonRate ? 'up' : 'down';
+        return $latestRate > $comparisonRate;
     }
 }
