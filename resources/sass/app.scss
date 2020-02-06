@@ -1,1 +1,48 @@
-//
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Variables
+@import 'variables';
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+// Fontawesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/regular.scss';
+
+.fa-caret-up {
+    color: #52de97; // 50d890, 0c9463, 42b883, 52de97
+}
+
+.fa-caret-down {
+    color: #fa163f; // f64b3c, f0134d, f0134d, e41749
+}
+
+td a {
+    color: #777;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+$colors: #fb6262, #fb8d62, #fbc062, #dcfb62, #62fb8d, #62fbdf, #62cbfb, #a462fb, #dc62fb, #fb6290;
+
+@for $i from 1 through length($colors) {
+    @for $i from 1 through length($colors) {
+        tr:nth-child(#{length($colors)}n+#{$i}) .currency-logo {
+            background: lighten(nth($colors, $i), 25%);
+            color: darken(nth($colors, $i), 10%);
+        }
+    }
+}
+
+.currency-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    background: green;
+}

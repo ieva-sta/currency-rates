@@ -70,7 +70,7 @@ class GetCurrencyRates extends Command
                         'currency_id' => $currency->id,
                         'date'        => $date->format('Y-m-d')
                     ], [
-                        'price' => (int)$currencyData[1],
+                        'price' => $currencyData[1],
                     ]);
                 }
             }

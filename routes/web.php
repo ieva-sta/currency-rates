@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'CurrencyController@index')->name('currency.index');
+Route::get('valuta/{currency}', 'CurrencyController@show')->name('currency.show');
+
+Route::get('valuta/{currency}/graph/{days}', 'CurrencyController@graph')->name('currency.graph');
