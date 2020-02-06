@@ -1961,6 +1961,28 @@ module.exports = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
         /* harmony default export */
         __webpack_exports__["default"] = ({
@@ -1979,19 +2001,104 @@ module.exports = {
             },
             data: function data() {
                 return {
-                    tableData: []
+                    tableData: [],
+                    url: '',
+                    pagination: {
+                        meta: {
+                            to: 1,
+                            from: 1
+                        }
+                    },
+                    offset: 4,
+                    currentPage: 1,
+                    perPage: 7,
+                    sortedColumn: 'id',
+                    order: 'asc'
                 };
+            },
+            watch: {
+                fetchUrl: {
+                    handler: function handler(fetchUrl) {
+                        this.url = fetchUrl;
+                    },
+                    immediate: true
+                }
             },
             created: function created() {
                 return this.fetchData(this.fetchUrl);
             },
+            computed: {
+                /**
+                 * Get the pages number array for displaying in the pagination.
+                 * */
+                pagesNumber: function pagesNumber() {
+                    if (!this.pagination.meta.to) {
+                        return [];
+                    }
+
+                    var from = this.pagination.meta.current_page - this.offset;
+
+                    if (from < 1) {
+                        from = 1;
+                    }
+
+                    var to = from + this.offset * 2;
+
+                    if (to >= this.pagination.meta.last_page) {
+                        to = this.pagination.meta.last_page;
+                    }
+
+                    var pagesArray = [];
+
+                    for (var page = from; page <= to; page++) {
+                        pagesArray.push(page);
+                    }
+
+                    return pagesArray;
+                },
+
+                /**
+                 * Get the total data displayed in the current page.
+                 * */
+                totalData: function totalData() {
+                    return this.pagination.meta.to - this.pagination.meta.from + 1;
+                }
+            },
             methods: {
-                fetchData: function fetchData(url) {
+                fetchData: function fetchData() {
                     var _this = this;
 
-                    axios.get(url).then(function (data) {
-                        _this.tableData = data.data.data;
+                    var dataFetchUrl = "".concat(this.url, "?page=").concat(this.currentPage, "&column=").concat(this.sortedColumn, "&order=").concat(this.order, "&per_page=").concat(this.perPage);
+                    axios.get(dataFetchUrl).then(function (_ref) {
+                        var data = _ref.data;
+                        _this.pagination = data;
+                        _this.tableData = data.data;
+                    })["catch"](function (error) {
+                        return _this.tableData = [];
                     });
+                },
+
+                /**
+                 * Change the page.
+                 * @param pageNumber
+                 */
+                changePage: function changePage(pageNumber) {
+                    this.currentPage = pageNumber;
+                    this.fetchData();
+                },
+
+                /**
+                 * Sort the data by column.
+                 * */
+                sortByColumn: function sortByColumn(column) {
+                    if (column === this.sortedColumn) {
+                        this.order = this.order === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        this.sortedColumn = column;
+                        this.order = 'asc';
+                    }
+
+                    this.fetchData();
                 }
             }
         });
@@ -8181,7 +8288,7 @@ function getAlpha(string) {
 // generators
 function hexString(rgba, a) {
    var a = (a !== undefined && rgba.length === 3) ? a : rgba[3];
-   return "#" + hexDouble(rgba[0])
+    return "#" + hexDouble(rgba[0])
               + hexDouble(rgba[1])
               + hexDouble(rgba[2])
               + (
@@ -71259,6 +71366,50 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
             var _c = _vm._self._c || _h
             return _c("div", {staticClass: "data-table"}, [
                 _c("table", {staticClass: "table table-hover"}, [
+                    _c("thead", [
+                        _c("tr", [
+                            _c(
+                                "th",
+                                {
+                                    attrs: {scope: "col"},
+                                    on: {
+                                        click: function ($event) {
+                                            return _vm.sortByColumn("code")
+                                        }
+                                    }
+                                },
+                                [_vm._v("Currency")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                                "th",
+                                {
+                                    attrs: {scope: "col"},
+                                    on: {
+                                        click: function ($event) {
+                                            return _vm.sortByColumn("rate")
+                                        }
+                                    }
+                                },
+                                [_vm._v("Rate")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                                "th",
+                                {
+                                    staticClass: "text-center",
+                                    attrs: {scope: "col"},
+                                    on: {
+                                        click: function ($event) {
+                                            return _vm.sortByColumn("trend")
+                                        }
+                                    }
+                                },
+                                [_vm._v("Trend")]
+                            )
+                        ])
+                    ]),
+                    _vm._v(" "),
                     _c(
                         "tbody",
                         [
@@ -71273,116 +71424,211 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                                         [_vm._v("No data found.")]
                                     )
                                 ])
-                                : _vm._l(_vm.tableData, function (currency, key1) {
-                                    return _c(
-                                        "tr",
-                                        {key: currency.id, staticClass: "m-datatable__row"},
-                                        [
-                                            _c("td", [
-                                                _c("a", {staticClass: "d-flex", attrs: {href: "#"}}, [
-                                                    _c(
-                                                        "div",
-                                                        {
-                                                            staticClass:
-                                                                "currency-logo d-flex align-items-center justify-content-center font-weight-bold"
-                                                        },
-                                                        [
-                                                            _vm._v(
-                                                                "\n                        " +
-                                                                _vm._s(currency.symbol) +
-                                                                "\n                    "
-                                                            )
-                                                        ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                        "div",
-                                                        {
-                                                            staticClass:
-                                                                "d-flex flex-column justify-content-center ml-3"
-                                                        },
-                                                        [
-                                                            _c("h5", {staticClass: "m-0 font-weight-bold"}, [
-                                                                _vm._v(
-                                                                    "\n                            " +
-                                                                    _vm._s(currency.code) +
-                                                                    "\n                        "
-                                                                )
-                                                            ]),
-                                                            _vm._v(" "),
-                                                            _c("p", {staticClass: "m-0"}, [
-                                                                _vm._v(
-                                                                    "\n                            " +
-                                                                    _vm._s(currency.title) +
-                                                                    "\n                        "
-                                                                )
-                                                            ])
-                                                        ]
-                                                    )
-                                                ])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
+                                : _vm._l(_vm.tableData, function (currency) {
+                                    return _c("tr", {key: currency.id}, [
+                                        _c("td", [
+                                            _c("a", {staticClass: "d-flex", attrs: {href: "#"}}, [
                                                 _c(
-                                                    "a",
-                                                    {
-                                                        staticClass: "d-flex align-items-center",
-                                                        attrs: {href: "#"}
-                                                    },
-                                                    [
-                                                        _c("h5", {staticClass: "m-0"}, [
-                                                            _vm._v(_vm._s(currency.rate))
-                                                        ])
-                                                    ]
-                                                )
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [
-                                                _c(
-                                                    "a",
+                                                    "div",
                                                     {
                                                         staticClass:
-                                                            "d-flex align-items-center justify-content-center",
-                                                        attrs: {href: "#"}
+                                                            "currency-logo d-flex align-items-center justify-content-center font-weight-bold"
                                                     },
                                                     [
-                                                        _c(
-                                                            "div",
-                                                            [
-                                                                _c("graph", {
-                                                                    attrs: {
-                                                                        currency: currency,
-                                                                        "graph-id": currency.id,
-                                                                        "show-labels": false,
-                                                                        days: 7
-                                                                    }
-                                                                })
-                                                            ],
-                                                            1
-                                                        ),
+                                                        _vm._v(
+                                                            "\n                        " +
+                                                            _vm._s(currency.symbol) +
+                                                            "\n                    "
+                                                        )
+                                                    ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                    "div",
+                                                    {
+                                                        staticClass:
+                                                            "d-flex flex-column justify-content-center ml-3"
+                                                    },
+                                                    [
+                                                        _c("h5", {staticClass: "m-0 font-weight-bold"}, [
+                                                            _vm._v(
+                                                                "\n                            " +
+                                                                _vm._s(currency.code) +
+                                                                "\n                        "
+                                                            )
+                                                        ]),
                                                         _vm._v(" "),
-                                                        _c("div", {staticClass: "d-flex"}, [
-                                                            _c("i", {
-                                                                staticClass: "mr-1 fas",
-                                                                class: currency.trend.trend
-                                                                    ? "fa-caret-up"
-                                                                    : "fa-caret-down"
-                                                            }),
-                                                            _vm._v(" "),
-                                                            _c("h6", [
-                                                                _vm._v(_vm._s(currency.trend.percentage) + " %")
-                                                            ])
+                                                        _c("p", {staticClass: "m-0"}, [
+                                                            _vm._v(
+                                                                "\n                            " +
+                                                                _vm._s(currency.title) +
+                                                                "\n                        "
+                                                            )
                                                         ])
                                                     ]
                                                 )
                                             ])
-                                        ]
-                                    )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                            _c(
+                                                "a",
+                                                {
+                                                    staticClass: "d-flex align-items-center",
+                                                    attrs: {href: "#"}
+                                                },
+                                                [
+                                                    _c("h5", {staticClass: "m-0"}, [
+                                                        _vm._v(_vm._s(currency.rate))
+                                                    ])
+                                                ]
+                                            )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                            _c(
+                                                "a",
+                                                {
+                                                    staticClass:
+                                                        "d-flex align-items-center justify-content-center",
+                                                    attrs: {href: "#"}
+                                                },
+                                                [
+                                                    _c(
+                                                        "div",
+                                                        [
+                                                            _c("graph", {
+                                                                attrs: {
+                                                                    currency: currency,
+                                                                    "graph-id": currency.id,
+                                                                    "show-labels": false,
+                                                                    days: 7
+                                                                }
+                                                            })
+                                                        ],
+                                                        1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("div", {staticClass: "d-flex"}, [
+                                                        _c("i", {
+                                                            staticClass: "mr-1 fas",
+                                                            class: currency.trend.trend
+                                                                ? "fa-caret-up"
+                                                                : "fa-caret-down"
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c("h6", [
+                                                            _vm._v(_vm._s(currency.trend.percentage) + " %")
+                                                        ])
+                                                    ])
+                                                ]
+                                            )
+                                        ])
+                                    ])
                                 })
                         ],
                         2
                     )
-                ])
+                ]),
+                _vm._v(" "),
+                _vm.pagination && _vm.tableData.length > 0
+                    ? _c("nav", {staticClass: "d-flex flex-column align-items-center"}, [
+                        _c(
+                            "ul",
+                            {staticClass: "pagination mb-1"},
+                            [
+                                _c(
+                                    "li",
+                                    {
+                                        staticClass: "page-item",
+                                        class: {disabled: _vm.currentPage === 1}
+                                    },
+                                    [
+                                        _c(
+                                            "a",
+                                            {
+                                                staticClass: "page-link",
+                                                attrs: {href: "#"},
+                                                on: {
+                                                    click: function ($event) {
+                                                        $event.preventDefault()
+                                                        return _vm.changePage(_vm.currentPage - 1)
+                                                    }
+                                                }
+                                            },
+                                            [_vm._v("Previous")]
+                                        )
+                                    ]
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.pagesNumber, function (page) {
+                                    return _c(
+                                        "li",
+                                        {
+                                            staticClass: "page-item",
+                                            class: {active: page == _vm.pagination.meta.current_page}
+                                        },
+                                        [
+                                            _c(
+                                                "a",
+                                                {
+                                                    staticClass: "page-link",
+                                                    attrs: {href: "javascript:void(0)"},
+                                                    on: {
+                                                        click: function ($event) {
+                                                            $event.preventDefault()
+                                                            return _vm.changePage(page)
+                                                        }
+                                                    }
+                                                },
+                                                [_vm._v(_vm._s(page))]
+                                            )
+                                        ]
+                                    )
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                    "li",
+                                    {
+                                        staticClass: "page-item",
+                                        class: {
+                                            disabled: _vm.currentPage === _vm.pagination.meta.last_page
+                                        }
+                                    },
+                                    [
+                                        _c(
+                                            "a",
+                                            {
+                                                staticClass: "page-link",
+                                                attrs: {href: "#"},
+                                                on: {
+                                                    click: function ($event) {
+                                                        $event.preventDefault()
+                                                        return _vm.changePage(_vm.currentPage + 1)
+                                                    }
+                                                }
+                                            },
+                                            [_vm._v("Next")]
+                                        )
+                                    ]
+                                )
+                            ],
+                            2
+                        ),
+                        _vm._v(" "),
+                        _c("span", {staticClass: "mb-3"}, [
+                            _c("i", [
+                                _vm._v(
+                                    "Displaying " +
+                                    _vm._s(_vm.pagination.data.length) +
+                                    " of " +
+                                    _vm._s(_vm.pagination.meta.total) +
+                                    " entries."
+                                )
+                            ])
+                        ])
+                    ])
+                    : _vm._e()
             ])
         }
         var staticRenderFns = []
@@ -83746,7 +83992,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         });
 
 
-        /***/ }),
+        /***/
+    }),
 
 /***/ "./resources/js/components/Graph.vue":
 /*!*******************************************!*\
@@ -83775,7 +84022,6 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-
 )
 
 /* hot reload */
@@ -83795,7 +84041,8 @@ component.options.__file = "resources/js/components/Graph.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Graph_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Graph.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Graph.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Graph_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
+        /* empty/unused harmony star reexport */ /* harmony default export */
+        __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Graph_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 

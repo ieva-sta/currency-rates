@@ -1,11 +1,18 @@
 <template>
     <div class="data-table">
         <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col" @click="sortByColumn('code')">Currency</th>
+                <th scope="col" @click="sortByColumn('rate')">Rate</th>
+                <th scope="col" class="text-center" @click="sortByColumn('trend')">Trend</th>
+            </tr>
+            </thead>
             <tbody>
             <tr class="" v-if="tableData.length === 0">
                 <td class="lead text-center" :colspan="columns.length + 1">No data found.</td>
             </tr>
-            <tr v-for="(currency, key1) in tableData" :key="currency.id" class="m-datatable__row" v-else>
+            <tr v-for="currency in tableData" :key="currency.id" v-else>
                 <td>
                     <a href="#" class="d-flex">
                         <div
@@ -45,6 +52,22 @@
             </tbody>
 
         </table>
+        <nav v-if="pagination && tableData.length > 0" class="d-flex flex-column align-items-center">
+            <ul class="pagination mb-1">
+                <li class="page-item" :class="{'disabled' : currentPage === 1}">
+                    <a class="page-link" href="#" @click.prevent="changePage(currentPage - 1)">Previous</a>
+                </li>
+                <li v-for="page in pagesNumber" class="page-item"
+                    :class="{'active': page == pagination.meta.current_page}">
+                    <a href="javascript:void(0)" @click.prevent="changePage(page)" class="page-link">{{ page }}</a>
+                </li>
+                <li class="page-item" :class="{'disabled': currentPage === pagination.meta.last_page }">
+                    <a class="page-link" href="#" @click.prevent="changePage(currentPage + 1)">Next</a>
+                </li>
+            </ul>
+            <span
+                class="mb-3"><i>Displaying {{ pagination.data.length }} of {{ pagination.meta.total }} entries.</i></span>
+        </nav>
     </div>
 </template>
 
@@ -65,20 +88,87 @@
         },
         data() {
             return {
-                tableData: []
+                tableData: [],
+                url: '',
+                pagination: {
+                    meta: {to: 1, from: 1}
+                },
+                offset: 4,
+                currentPage: 1,
+                perPage: 7,
+                sortedColumn: 'id',
+                order: 'asc'
+            }
+        },
+        watch: {
+            fetchUrl: {
+                handler: function (fetchUrl) {
+                    this.url = fetchUrl
+                },
+                immediate: true
             }
         },
         created() {
             return this.fetchData(this.fetchUrl)
         },
-        methods: {
-            fetchData(url) {
-                axios.get(url)
-                    .then(data => {
-                        this.tableData = data.data.data
-                    })
+        computed: {
+            /**
+             * Get the pages number array for displaying in the pagination.
+             * */
+            pagesNumber() {
+                if (!this.pagination.meta.to) {
+                    return []
+                }
+                let from = this.pagination.meta.current_page - this.offset
+                if (from < 1) {
+                    from = 1
+                }
+                let to = from + (this.offset * 2)
+                if (to >= this.pagination.meta.last_page) {
+                    to = this.pagination.meta.last_page
+                }
+                let pagesArray = []
+                for (let page = from; page <= to; page++) {
+                    pagesArray.push(page)
+                }
+                return pagesArray
             },
-
+            /**
+             * Get the total data displayed in the current page.
+             * */
+            totalData() {
+                return (this.pagination.meta.to - this.pagination.meta.from) + 1
+            }
+        },
+        methods: {
+            fetchData() {
+                let dataFetchUrl = `${this.url}?page=${this.currentPage}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}`
+                axios.get(dataFetchUrl)
+                    .then(({data}) => {
+                        this.pagination = data
+                        this.tableData = data.data
+                    }).catch(error => this.tableData = [])
+            },
+            /**
+             * Change the page.
+             * @param pageNumber
+             */
+            changePage(pageNumber) {
+                this.currentPage = pageNumber
+                this.fetchData()
+            },
+            /**
+             * Sort the data by column.
+             * */
+            sortByColumn(column) {
+                if (column === this.sortedColumn) {
+                    this.order = (this.order === 'asc') ? 'desc' : 'asc'
+                } else {
+                    this.sortedColumn = column
+                    this.order = 'asc'
+                }
+                this.fetchData()
+            }
         }
     }
 </script>

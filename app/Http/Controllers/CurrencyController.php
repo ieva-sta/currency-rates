@@ -6,6 +6,8 @@ use App\Http\Resources\CurrencyResource;
 use App\Models\Currency;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
@@ -24,9 +26,25 @@ class CurrencyController extends Controller
         ]);
     }
 
-    public function getCurrencyData()
+    /**
+     * @param Request $request
+     * @return AnonymousResourceCollection
+     */
+    public function getCurrencyData(Request $request)
     {
-        $currencies = Currency::has('rates')->get();
+        switch ($request->column) {
+            case 'rate':
+                $query = Currency::join('rates', 'rates.currency_id', '=', 'currencies.id')
+                    ->select('currencies.*')
+                    ->orderBy('rates.price', $request->order);
+                break;
+            case 'trend':
+                break;
+            default:
+                $query = Currency::has('rates')->orderBy($request->column, $request->order);
+        }
+
+        $currencies = $query->paginate(5);
 
         return CurrencyResource::collection($currencies);
     }
