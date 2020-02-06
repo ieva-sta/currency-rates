@@ -2,83 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Currency;
-use Illuminate\Http\Request;
+use App\Models\Currency;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 class CurrencyController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Return all currencies that have data for rates
      */
     public function index()
     {
-        //
-    }
+        $currencies = Currency::has('rates')->paginate(10);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('currency.index')->with([
+            'currencies' => $currencies
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Currency $currency
-     * @return \Illuminate\Http\Response
+     * @param Currency $currency
+     * @return Factory|View
      */
     public function show(Currency $currency)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Currency $currency
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Currency $currency)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Currency $currency
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Currency $currency)
-    {
-        //
+        return view('currency.show')->with([
+            'currency' => $currency->with('rates')
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Currency $currency
-     * @return \Illuminate\Http\Response
+     * @param Currency $currency
+     * @return void
      */
-    public function destroy(Currency $currency)
+    public function graph(Currency $currency)
     {
         //
     }

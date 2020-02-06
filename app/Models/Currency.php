@@ -23,4 +23,18 @@ class Currency extends Model
     {
         return $this->hasMany(Rate::class);
     }
+
+    /**
+     * @return string
+     */
+    public function getTrendAttribute(): string
+    {
+        $rates = $this->rates()->orderBy('date')->get();
+        $latestRate = $rates->last()->price;
+
+        $rates = $rates->slice(0, -1);
+        $comparisonRate = $rates->last()->price;
+
+        return $latestRate > $comparisonRate ? 'up' : 'down';
+    }
 }
