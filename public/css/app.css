@@ -16816,3 +16816,514 @@ td a:hover {
     text-decoration: none;
 }
 
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+tr:nth-child(10n+1) .currency-logo {
+    background: #fedede;
+    color: #fa3030;
+}
+
+tr:nth-child(10n+2) .currency-logo {
+    background: #fee7de;
+    color: #fa6930;
+}
+
+tr:nth-child(10n+3) .currency-logo {
+    background: #fef2de;
+    color: #faac30;
+}
+
+tr:nth-child(10n+4) .currency-logo {
+    background: #f8fede;
+    color: #d1fa30;
+}
+
+tr:nth-child(10n+5) .currency-logo {
+    background: #defee7;
+    color: #30fa69;
+}
+
+tr:nth-child(10n+6) .currency-logo {
+    background: #defef8;
+    color: #30fad5;
+}
+
+tr:nth-child(10n+7) .currency-logo {
+    background: #def4fe;
+    color: #30bbfa;
+}
+
+tr:nth-child(10n+8) .currency-logo {
+    background: #ecdefe;
+    color: #8730fa;
+}
+
+tr:nth-child(10n+9) .currency-logo {
+    background: #f8defe;
+    color: #d130fa;
+}
+
+tr:nth-child(10n+10) .currency-logo {
+    background: #fedee8;
+    color: #fa306d;
+}
+
+tr:nth-child(10n+1) .currency-logo {
+    background: #fedede;
+    color: #fa3030;
+}
+
+tr:nth-child(10n+2) .currency-logo {
+    background: #fee7de;
+    color: #fa6930;
+}
+
+tr:nth-child(10n+3) .currency-logo {
+    background: #fef2de;
+    color: #faac30;
+}
+
+tr:nth-child(10n+4) .currency-logo {
+    background: #f8fede;
+    color: #d1fa30;
+}
+
+tr:nth-child(10n+5) .currency-logo {
+    background: #defee7;
+    color: #30fa69;
+}
+
+tr:nth-child(10n+6) .currency-logo {
+    background: #defef8;
+    color: #30fad5;
+}
+
+tr:nth-child(10n+7) .currency-logo {
+    background: #def4fe;
+    color: #30bbfa;
+}
+
+tr:nth-child(10n+8) .currency-logo {
+    background: #ecdefe;
+    color: #8730fa;
+}
+
+tr:nth-child(10n+9) .currency-logo {
+    background: #f8defe;
+    color: #d130fa;
+}
+
+tr:nth-child(10n+10) .currency-logo {
+    background: #fedee8;
+    color: #fa306d;
+}
+
+tr:nth-child(10n+1) .currency-logo {
+    background: #fedede;
+    color: #fa3030;
+}
+
+tr:nth-child(10n+2) .currency-logo {
+    background: #fee7de;
+    color: #fa6930;
+}
+
+tr:nth-child(10n+3) .currency-logo {
+    background: #fef2de;
+    color: #faac30;
+}
+
+tr:nth-child(10n+4) .currency-logo {
+    background: #f8fede;
+    color: #d1fa30;
+}
+
+tr:nth-child(10n+5) .currency-logo {
+    background: #defee7;
+    color: #30fa69;
+}
+
+tr:nth-child(10n+6) .currency-logo {
+    background: #defef8;
+    color: #30fad5;
+}
+
+tr:nth-child(10n+7) .currency-logo {
+    background: #def4fe;
+    color: #30bbfa;
+}
+
+tr:nth-child(10n+8) .currency-logo {
+    background: #ecdefe;
+    color: #8730fa;
+}
+
+tr:nth-child(10n+9) .currency-logo {
+    background: #f8defe;
+    color: #d130fa;
+}
+
+tr:nth-child(10n+10) .currency-logo {
+    background: #fedee8;
+    color: #fa306d;
+}
+
+tr:nth-child(10n+1) .currency-logo {
+    background: #fedede;
+    color: #fa3030;
+}
+
+tr:nth-child(10n+2) .currency-logo {
+    background: #fee7de;
+    color: #fa6930;
+}
+
+tr:nth-child(10n+3) .currency-logo {
+    background: #fef2de;
+    color: #faac30;
+}
+
+tr:nth-child(10n+4) .currency-logo {
+    background: #f8fede;
+    color: #d1fa30;
+}
+
+tr:nth-child(10n+5) .currency-logo {
+    background: #defee7;
+    color: #30fa69;
+}
+
+tr:nth-child(10n+6) .currency-logo {
+    background: #defef8;
+    color: #30fad5;
+}
+
+tr:nth-child(10n+7) .currency-logo {
+    background: #def4fe;
+    color: #30bbfa;
+}
+
+tr:nth-child(10n+8) .currency-logo {
+    background: #ecdefe;
+    color: #8730fa;
+}
+
+tr:nth-child(10n+9) .currency-logo {
+    background: #f8defe;
+    color: #d130fa;
+}
+
+tr:nth-child(10n+10) .currency-logo {
+    background: #fedee8;
+    color: #fa306d;
+}
+
+tr:nth-child(10n+1) .currency-logo {
+    background: #fedede;
+    color: #fa3030;
+}
+
+tr:nth-child(10n+2) .currency-logo {
+    background: #fee7de;
+    color: #fa6930;
+}
+
+tr:nth-child(10n+3) .currency-logo {
+    background: #fef2de;
+    color: #faac30;
+}
+
+tr:nth-child(10n+4) .currency-logo {
+    background: #f8fede;
+    color: #d1fa30;
+}
+
+tr:nth-child(10n+5) .currency-logo {
+    background: #defee7;
+    color: #30fa69;
+}
+
+tr:nth-child(10n+6) .currency-logo {
+    background: #defef8;
+    color: #30fad5;
+}
+
+tr:nth-child(10n+7) .currency-logo {
+    background: #def4fe;
+    color: #30bbfa;
+}
+
+tr:nth-child(10n+8) .currency-logo {
+    background: #ecdefe;
+    color: #8730fa;
+}
+
+tr:nth-child(10n+9) .currency-logo {
+    background: #f8defe;
+    color: #d130fa;
+}
+
+tr:nth-child(10n+10) .currency-logo {
+    background: #fedee8;
+    color: #fa306d;
+}
+
+tr:nth-child(10n+1) .currency-logo {
+    background: #fedede;
+    color: #fa3030;
+}
+
+tr:nth-child(10n+2) .currency-logo {
+    background: #fee7de;
+    color: #fa6930;
+}
+
+tr:nth-child(10n+3) .currency-logo {
+    background: #fef2de;
+    color: #faac30;
+}
+
+tr:nth-child(10n+4) .currency-logo {
+    background: #f8fede;
+    color: #d1fa30;
+}
+
+tr:nth-child(10n+5) .currency-logo {
+    background: #defee7;
+    color: #30fa69;
+}
+
+tr:nth-child(10n+6) .currency-logo {
+    background: #defef8;
+    color: #30fad5;
+}
+
+tr:nth-child(10n+7) .currency-logo {
+    background: #def4fe;
+    color: #30bbfa;
+}
+
+tr:nth-child(10n+8) .currency-logo {
+    background: #ecdefe;
+    color: #8730fa;
+}
+
+tr:nth-child(10n+9) .currency-logo {
+    background: #f8defe;
+    color: #d130fa;
+}
+
+tr:nth-child(10n+10) .currency-logo {
+    background: #fedee8;
+    color: #fa306d;
+}
+
+tr:nth-child(10n+1) .currency-logo {
+    background: #fedede;
+    color: #fa3030;
+}
+
+tr:nth-child(10n+2) .currency-logo {
+    background: #fee7de;
+    color: #fa6930;
+}
+
+tr:nth-child(10n+3) .currency-logo {
+    background: #fef2de;
+    color: #faac30;
+}
+
+tr:nth-child(10n+4) .currency-logo {
+    background: #f8fede;
+    color: #d1fa30;
+}
+
+tr:nth-child(10n+5) .currency-logo {
+    background: #defee7;
+    color: #30fa69;
+}
+
+tr:nth-child(10n+6) .currency-logo {
+    background: #defef8;
+    color: #30fad5;
+}
+
+tr:nth-child(10n+7) .currency-logo {
+    background: #def4fe;
+    color: #30bbfa;
+}
+
+tr:nth-child(10n+8) .currency-logo {
+    background: #ecdefe;
+    color: #8730fa;
+}
+
+tr:nth-child(10n+9) .currency-logo {
+    background: #f8defe;
+    color: #d130fa;
+}
+
+tr:nth-child(10n+10) .currency-logo {
+    background: #fedee8;
+    color: #fa306d;
+}
+
+tr:nth-child(10n+1) .currency-logo {
+    background: #fedede;
+    color: #fa3030;
+}
+
+tr:nth-child(10n+2) .currency-logo {
+    background: #fee7de;
+    color: #fa6930;
+}
+
+tr:nth-child(10n+3) .currency-logo {
+    background: #fef2de;
+    color: #faac30;
+}
+
+tr:nth-child(10n+4) .currency-logo {
+    background: #f8fede;
+    color: #d1fa30;
+}
+
+tr:nth-child(10n+5) .currency-logo {
+    background: #defee7;
+    color: #30fa69;
+}
+
+tr:nth-child(10n+6) .currency-logo {
+    background: #defef8;
+    color: #30fad5;
+}
+
+tr:nth-child(10n+7) .currency-logo {
+    background: #def4fe;
+    color: #30bbfa;
+}
+
+tr:nth-child(10n+8) .currency-logo {
+    background: #ecdefe;
+    color: #8730fa;
+}
+
+tr:nth-child(10n+9) .currency-logo {
+    background: #f8defe;
+    color: #d130fa;
+}
+
+tr:nth-child(10n+10) .currency-logo {
+    background: #fedee8;
+    color: #fa306d;
+}
+
+tr:nth-child(10n+1) .currency-logo {
+    background: #fedede;
+    color: #fa3030;
+}
+
+tr:nth-child(10n+2) .currency-logo {
+    background: #fee7de;
+    color: #fa6930;
+}
+
+tr:nth-child(10n+3) .currency-logo {
+    background: #fef2de;
+    color: #faac30;
+}
+
+tr:nth-child(10n+4) .currency-logo {
+    background: #f8fede;
+    color: #d1fa30;
+}
+
+tr:nth-child(10n+5) .currency-logo {
+    background: #defee7;
+    color: #30fa69;
+}
+
+tr:nth-child(10n+6) .currency-logo {
+    background: #defef8;
+    color: #30fad5;
+}
+
+tr:nth-child(10n+7) .currency-logo {
+    background: #def4fe;
+    color: #30bbfa;
+}
+
+tr:nth-child(10n+8) .currency-logo {
+    background: #ecdefe;
+    color: #8730fa;
+}
+
+tr:nth-child(10n+9) .currency-logo {
+    background: #f8defe;
+    color: #d130fa;
+}
+
+tr:nth-child(10n+10) .currency-logo {
+    background: #fedee8;
+    color: #fa306d;
+}
+
+tr:nth-child(10n+1) .currency-logo {
+    background: #fedede;
+    color: #fa3030;
+}
+
+tr:nth-child(10n+2) .currency-logo {
+    background: #fee7de;
+    color: #fa6930;
+}
+
+tr:nth-child(10n+3) .currency-logo {
+    background: #fef2de;
+    color: #faac30;
+}
+
+tr:nth-child(10n+4) .currency-logo {
+    background: #f8fede;
+    color: #d1fa30;
+}
+
+tr:nth-child(10n+5) .currency-logo {
+    background: #defee7;
+    color: #30fa69;
+}
+
+tr:nth-child(10n+6) .currency-logo {
+    background: #defef8;
+    color: #30fad5;
+}
+
+tr:nth-child(10n+7) .currency-logo {
+    background: #def4fe;
+    color: #30bbfa;
+}
+
+tr:nth-child(10n+8) .currency-logo {
+    background: #ecdefe;
+    color: #8730fa;
+}
+
+tr:nth-child(10n+9) .currency-logo {
+    background: #f8defe;
+    color: #d130fa;
+}
+
+tr:nth-child(10n+10) .currency-logo {
+    background: #fedee8;
+    color: #fa306d;
+}
+
+.currency-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    background: green;
+}
+

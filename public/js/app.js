@@ -2129,6 +2129,14 @@
                         },
                         responsive: false
                     };
+                    var backgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
+                    backgroundGradient.addColorStop(0, 'rgba(97, 123, 227, 0.1)');
+                    backgroundGradient.addColorStop(0.5, 'rgba(97, 123, 227, 0.05)');
+                    backgroundGradient.addColorStop(1, 'rgba(97, 123, 227, 0)');
+                    var lineGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
+                    lineGradient.addColorStop(0, 'rgba(97, 123, 227, 0.8)');
+                    lineGradient.addColorStop(0.5, 'rgba(97, 184, 227, 0.8)');
+                    lineGradient.addColorStop(1, 'rgba(97, 223, 227, 0.8)');
                     var graph = new Chart(currencyGraph, {
                         type: 'line',
                         data: {
@@ -2137,8 +2145,9 @@
                                 label: 'rate',
                                 data: this.rates,
                                 lineTension: .4,
-                                backgroundColor: 'rgba(97, 123, 227, .1)',
-                                borderColor: 'rgba(97, 123, 227, .6)'
+                                backgroundColor: backgroundGradient,
+                                borderColor: lineGradient,
+                                borderWidth: this.showLabels ? 3 : 2
                             }]
                         },
                         options: _objectSpread({}, options, {}, this.showLabels && largeGraphOptions, {}, !this.showLabels && smallGraphOptions)
