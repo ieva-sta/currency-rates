@@ -28,6 +28,20 @@ class CurrencyController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param Currency $currency
+     * @return Factory|View
+     */
+    public function show(Currency $currency)
+    {
+        return view('currency.show')->with([
+            'currency'   => $currency,
+            'currencies' => Currency::has('rates')->get()
+        ]);
+    }
+
+    /**
      * @param Request $request
      * @return AnonymousResourceCollection
      */
@@ -50,20 +64,6 @@ class CurrencyController extends Controller
 
         return CurrencyResource::collection($currencies);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param Currency $currency
-     * @return Factory|View
-     */
-    public function show(Currency $currency)
-    {
-        return view('currency.show')->with([
-            'currency' => $currency
-        ]);
-    }
-
 
     /**
      * Fetch currency rates from the last 30 days

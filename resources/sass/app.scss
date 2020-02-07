@@ -33,7 +33,7 @@ $colors: #fb6262, #fb8d62, #fbc062, #dcfb62, #62fb8d, #62fbdf, #62cbfb, #a462fb,
 
 @for $i from 1 through length($colors) {
     @for $i from 1 through length($colors) {
-        tr:nth-child(#{length($colors)}n+#{$i}) .currency-logo {
+        .currency-list:nth-child(#{length($colors)}n+#{$i}) .currency-logo {
             background: lighten(nth($colors, $i), 25%);
             color: darken(nth($colors, $i), 10%);
         }
@@ -44,4 +44,17 @@ $colors: #fb6262, #fb8d62, #fbc062, #dcfb62, #62fb8d, #62fbdf, #62cbfb, #a462fb,
     width: 60px;
     height: 60px;
     border-radius: 15px;
+}
+
+li.currency-list.active {
+    background: rgba(97, 123, 227, 0.5);
+
+    a {
+        color: #fff;
+    }
+}
+
+li.currency-list .currency-logo {
+    width: 40px;
+    height: 40px;
 }

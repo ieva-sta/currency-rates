@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="d-flex justify-content-center">
         <canvas :id="graphId" :height="this.height" :width="this.width"></canvas>
     </div>
 </template>

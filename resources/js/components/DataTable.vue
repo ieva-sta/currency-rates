@@ -18,9 +18,9 @@
             <tr class="" v-if="tableData.length === 0">
                 <td class="lead text-center" :colspan="columns.length + 1">No data found.</td>
             </tr>
-            <tr v-for="currency in tableData" :key="currency.id" v-else>
+            <tr v-for="currency in tableData" :key="currency.id" v-else class="currency-list">
                 <td>
-                    <a href="#" class="d-flex">
+                    <a :href="`currency/${currency.code}`" class="d-flex">
                         <div
                             class="currency-logo d-flex align-items-center justify-content-center font-weight-bold">
                             {{ currency.symbol }}
@@ -36,13 +36,13 @@
                     </a>
                 </td>
                 <td>
-                    <a href="#"
+                    <a :href="`currency/${currency.code}`"
                        class="d-flex align-items-center">
                         <h5 class="m-0">{{ currency.rate }}</h5>
                     </a>
                 </td>
                 <td>
-                    <a href="#"
+                    <a :href="`currency/${currency.code}`"
                        class="d-flex align-items-center justify-content-center">
                         <div>
                             <graph :currency="currency" :graph-id="currency.id"

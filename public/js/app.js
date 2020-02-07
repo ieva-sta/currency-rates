@@ -71438,106 +71438,121 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                                     )
                                 ])
                                 : _vm._l(_vm.tableData, function (currency) {
-                                    return _c("tr", {key: currency.id}, [
-                                        _c("td", [
-                                            _c("a", {staticClass: "d-flex", attrs: {href: "#"}}, [
+                                    return _c(
+                                        "tr",
+                                        {key: currency.id, staticClass: "currency-list"},
+                                        [
+                                            _c("td", [
                                                 _c(
-                                                    "div",
+                                                    "a",
                                                     {
-                                                        staticClass:
-                                                            "currency-logo d-flex align-items-center justify-content-center font-weight-bold"
+                                                        staticClass: "d-flex",
+                                                        attrs: {href: "currency/" + currency.code}
                                                     },
                                                     [
-                                                        _vm._v(
-                                                            "\n                        " +
-                                                            _vm._s(currency.symbol) +
-                                                            "\n                    "
+                                                        _c(
+                                                            "div",
+                                                            {
+                                                                staticClass:
+                                                                    "currency-logo d-flex align-items-center justify-content-center font-weight-bold"
+                                                            },
+                                                            [
+                                                                _vm._v(
+                                                                    "\n                        " +
+                                                                    _vm._s(currency.symbol) +
+                                                                    "\n                    "
+                                                                )
+                                                            ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                            "div",
+                                                            {
+                                                                staticClass:
+                                                                    "d-flex flex-column justify-content-center ml-3"
+                                                            },
+                                                            [
+                                                                _c(
+                                                                    "h5",
+                                                                    {staticClass: "m-0 font-weight-bold"},
+                                                                    [
+                                                                        _vm._v(
+                                                                            "\n                            " +
+                                                                            _vm._s(currency.code) +
+                                                                            "\n                        "
+                                                                        )
+                                                                    ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c("p", {staticClass: "m-0"}, [
+                                                                    _vm._v(
+                                                                        "\n                            " +
+                                                                        _vm._s(currency.title) +
+                                                                        "\n                        "
+                                                                    )
+                                                                ])
+                                                            ]
                                                         )
                                                     ]
-                                                ),
-                                                _vm._v(" "),
+                                                )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
                                                 _c(
-                                                    "div",
+                                                    "a",
                                                     {
-                                                        staticClass:
-                                                            "d-flex flex-column justify-content-center ml-3"
+                                                        staticClass: "d-flex align-items-center",
+                                                        attrs: {href: "currency/" + currency.code}
                                                     },
                                                     [
-                                                        _c("h5", {staticClass: "m-0 font-weight-bold"}, [
-                                                            _vm._v(
-                                                                "\n                            " +
-                                                                _vm._s(currency.code) +
-                                                                "\n                        "
-                                                            )
-                                                        ]),
+                                                        _c("h5", {staticClass: "m-0"}, [
+                                                            _vm._v(_vm._s(currency.rate))
+                                                        ])
+                                                    ]
+                                                )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                                _c(
+                                                    "a",
+                                                    {
+                                                        staticClass:
+                                                            "d-flex align-items-center justify-content-center",
+                                                        attrs: {href: "currency/" + currency.code}
+                                                    },
+                                                    [
+                                                        _c(
+                                                            "div",
+                                                            [
+                                                                _c("graph", {
+                                                                    attrs: {
+                                                                        currency: currency,
+                                                                        "graph-id": currency.id,
+                                                                        "show-labels": false,
+                                                                        days: 7
+                                                                    }
+                                                                })
+                                                            ],
+                                                            1
+                                                        ),
                                                         _vm._v(" "),
-                                                        _c("p", {staticClass: "m-0"}, [
-                                                            _vm._v(
-                                                                "\n                            " +
-                                                                _vm._s(currency.title) +
-                                                                "\n                        "
-                                                            )
+                                                        _c("div", {staticClass: "d-flex"}, [
+                                                            _c("i", {
+                                                                staticClass: "mr-1 fas",
+                                                                class: currency.trend.trend
+                                                                    ? "fa-caret-up"
+                                                                    : "fa-caret-down"
+                                                            }),
+                                                            _vm._v(" "),
+                                                            _c("h6", [
+                                                                _vm._v(_vm._s(currency.trend.percentage) + " %")
+                                                            ])
                                                         ])
                                                     ]
                                                 )
                                             ])
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                            _c(
-                                                "a",
-                                                {
-                                                    staticClass: "d-flex align-items-center",
-                                                    attrs: {href: "#"}
-                                                },
-                                                [
-                                                    _c("h5", {staticClass: "m-0"}, [
-                                                        _vm._v(_vm._s(currency.rate))
-                                                    ])
-                                                ]
-                                            )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                            _c(
-                                                "a",
-                                                {
-                                                    staticClass:
-                                                        "d-flex align-items-center justify-content-center",
-                                                    attrs: {href: "#"}
-                                                },
-                                                [
-                                                    _c(
-                                                        "div",
-                                                        [
-                                                            _c("graph", {
-                                                                attrs: {
-                                                                    currency: currency,
-                                                                    "graph-id": currency.id,
-                                                                    "show-labels": false,
-                                                                    days: 7
-                                                                }
-                                                            })
-                                                        ],
-                                                        1
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c("div", {staticClass: "d-flex"}, [
-                                                        _c("i", {
-                                                            staticClass: "mr-1 fas",
-                                                            class: currency.trend.trend
-                                                                ? "fa-caret-up"
-                                                                : "fa-caret-down"
-                                                        }),
-                                                        _vm._v(" "),
-                                                        _c("h6", [
-                                                            _vm._v(_vm._s(currency.trend.percentage) + " %")
-                                                        ])
-                                                    ])
-                                                ]
-                                            )
-                                        ])
-                                    ])
+                                        ]
+                                    )
                                 })
                         ],
                         2
@@ -71654,7 +71669,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+    return _c("div", {staticClass: "d-flex justify-content-center"}, [
     _c("canvas", {
       attrs: { id: _vm.graphId, height: this.height, width: this.width }
     })
