@@ -22,7 +22,9 @@ window.axios = require('axios')
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('graph', require('./components/Graph.vue').default);
-Vue.component('data-table', require('./components/DataTable').default);
+Vue.component('index-data-table', require('./components/IndexDataTable').default);
+Vue.component('currency-data-table', require('./components/CurrencyDataTable').default);
+Vue.component('currency-select', require('./components/CurrencySelect').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

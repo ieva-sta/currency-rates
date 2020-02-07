@@ -1,5 +1,10 @@
 <template>
     <div class="data-table p-5">
+        <div class="d-flex justify-content-end pb-2">
+            <div class="col-3">
+                <currency-select v-model="selected_currency"></currency-select>
+            </div>
+        </div>
         <table class="table table-hover">
             <thead>
             <tr>
@@ -16,7 +21,7 @@
             </thead>
             <tbody>
             <tr class="" v-if="tableData.length === 0">
-                <td class="lead text-center" :colspan="columns.length + 1">No data found.</td>
+                <td class="lead text-center">No data found.</td>
             </tr>
             <tr v-for="currency in tableData" :key="currency.id" v-else class="currency-list">
                 <td>
@@ -77,18 +82,15 @@
 
 <script>
     import Graph from './Graph.vue'
+    import CurrencySelect from './CurrencySelect.vue'
 
     export default {
-        components: {Graph},
+        components: {Graph, CurrencySelect},
         props: {
             fetchUrl: {
                 type: String,
                 required: true
-            },
-            columns: {
-                type: Array,
-                required: true
-            },
+            }
         },
         data() {
             return {
@@ -101,7 +103,8 @@
                 currentPage: 1,
                 perPage: 7,
                 sortedColumn: 'id',
-                order: 'asc'
+                order: 'asc',
+                selected_currency: 'EUR'
             }
         },
         watch: {
@@ -110,6 +113,9 @@
                     this.url = fetchUrl
                 },
                 immediate: true
+            },
+            selected_currency() {
+                this.fetchData()
             }
         },
         created() {
@@ -146,7 +152,7 @@
         },
         methods: {
             fetchData() {
-                let dataFetchUrl = `${this.url}?page=${this.currentPage}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}`
+                let dataFetchUrl = `${this.url}?page=${this.currentPage}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}&currency=${this.selected_currency}`
                 axios.get(dataFetchUrl)
                     .then(({data}) => {
                         this.pagination = data
@@ -176,7 +182,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

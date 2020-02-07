@@ -9,12 +9,18 @@
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
 @import '~@fortawesome/fontawesome-free/scss/regular.scss';
 
+
+.col-lg-8.bg-white {
+    border: 12px solid #7983F4;
+    border-radius: 20px;
+}
+
 .fa-caret-up {
-    color: #52de97; // 50d890, 0c9463, 42b883, 52de97
+    color: #52de97;
 }
 
 .fa-caret-down {
-    color: #fa163f; // f64b3c, f0134d, f0134d, e41749
+    color: #fa163f;
 }
 
 td a {
