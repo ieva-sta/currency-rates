@@ -35,13 +35,12 @@ class CurrencyController extends Controller
     {
         switch ($request->column) {
             case 'rate':
-                $query = Currency::join('rates', 'rates.currency_id', '=', 'currencies.id')
+                $query = Currency::has('rates')
+                    ->join('rates', 'rates.currency_id', '=', 'currencies.id')
                     ->select('currencies.*')
                     ->orderBy('rates.price', $request->order)
                     ->get()
                     ->unique();
-                break;
-            case 'trend':
                 break;
             default:
                 $query = Currency::has('rates')->orderBy($request->column, $request->order)->get();

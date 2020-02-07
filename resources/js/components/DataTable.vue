@@ -1,11 +1,17 @@
 <template>
-    <div class="data-table">
+    <div class="data-table p-5">
         <table class="table table-hover">
             <thead>
             <tr>
-                <th scope="col" @click="sortByColumn('code')">Currency</th>
-                <th scope="col" @click="sortByColumn('rate')">Rate</th>
-                <th scope="col" class="text-center" @click="sortByColumn('trend')">Trend</th>
+                <th scope="col" @click="sortByColumn('code')">
+                    <i class="fas" :class="order === 'asc' ? 'fa-sort-amount-up-alt' : 'fa-sort-amount-down'"></i>
+                    Currency
+                </th>
+                <th scope="col" @click="sortByColumn('rate')">
+                    <i class="fas" :class="order === 'asc' ? 'fa-sort-amount-up-alt' : 'fa-sort-amount-down'"></i>
+                    Rate
+                </th>
+                <th scope="col" class="text-center">Trend</th>
             </tr>
             </thead>
             <tbody>
@@ -65,8 +71,6 @@
                     <a class="page-link" href="#" @click.prevent="changePage(currentPage + 1)">Next</a>
                 </li>
             </ul>
-            <span
-                class="mb-3"><i>Displaying {{ pagination.data.length }} of {{ pagination.meta.total }} entries.</i></span>
         </nav>
     </div>
 </template>

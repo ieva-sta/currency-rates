@@ -40,19 +40,17 @@ class Currency extends Model
         return $this->hasMany(Rate::class)->orderBy('date', 'asc');
     }
 
-    /**
-     * @return bool
-     */
-    public function getTrendAttribute(): bool
+    public function getTrendPercentageAttribute()
     {
-        // @todo remove if unused
         $rates = $this->rates()->orderBy('date')->get();
         $latestRate = $rates->last()->price;
 
         $rates = $rates->slice(0, -1);
         $comparisonRate = $rates->last()->price;
 
-        return $latestRate > $comparisonRate;
+        $percentage = (1 - $comparisonRate / $latestRate) * 100;
+
+        return number_format(abs($percentage), 2);
     }
 
     /**

@@ -1984,6 +1984,10 @@ module.exports = {
 //
 //
 //
+//
+//
+//
+//
 
         /* harmony default export */
         __webpack_exports__["default"] = ({
@@ -71365,7 +71369,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
             var _vm = this
             var _h = _vm.$createElement
             var _c = _vm._self._c || _h
-            return _c("div", {staticClass: "data-table"}, [
+            return _c("div", {staticClass: "data-table p-5"}, [
                 _c("table", {staticClass: "table table-hover"}, [
                     _c("thead", [
                         _c("tr", [
@@ -71379,7 +71383,16 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                                         }
                                     }
                                 },
-                                [_vm._v("Currency")]
+                                [
+                                    _c("i", {
+                                        staticClass: "fas",
+                                        class:
+                                            _vm.order === "asc"
+                                                ? "fa-sort-amount-up-alt"
+                                                : "fa-sort-amount-down"
+                                    }),
+                                    _vm._v("\n                Currency\n            ")
+                                ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -71392,22 +71405,21 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                                         }
                                     }
                                 },
-                                [_vm._v("Rate")]
+                                [
+                                    _c("i", {
+                                        staticClass: "fas",
+                                        class:
+                                            _vm.order === "asc"
+                                                ? "fa-sort-amount-up-alt"
+                                                : "fa-sort-amount-down"
+                                    }),
+                                    _vm._v("\n                Rate\n            ")
+                                ]
                             ),
                             _vm._v(" "),
-                            _c(
-                                "th",
-                                {
-                                    staticClass: "text-center",
-                                    attrs: {scope: "col"},
-                                    on: {
-                                        click: function ($event) {
-                                            return _vm.sortByColumn("trend")
-                                        }
-                                    }
-                                },
-                                [_vm._v("Trend")]
-                            )
+                            _c("th", {staticClass: "text-center", attrs: {scope: "col"}}, [
+                                _vm._v("Trend")
+                            ])
                         ])
                     ]),
                     _vm._v(" "),
@@ -71615,19 +71627,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                                 )
                             ],
                             2
-                        ),
-                        _vm._v(" "),
-                        _c("span", {staticClass: "mb-3"}, [
-                            _c("i", [
-                                _vm._v(
-                                    "Displaying " +
-                                    _vm._s(_vm.pagination.data.length) +
-                                    " of " +
-                                    _vm._s(_vm.pagination.meta.total) +
-                                    " entries."
-                                )
-                            ])
-                        ])
+                        )
                     ])
                     : _vm._e()
             ])
