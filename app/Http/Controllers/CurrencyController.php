@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
@@ -36,15 +37,17 @@ class CurrencyController extends Controller
             case 'rate':
                 $query = Currency::join('rates', 'rates.currency_id', '=', 'currencies.id')
                     ->select('currencies.*')
-                    ->orderBy('rates.price', $request->order);
+                    ->orderBy('rates.price', $request->order)
+                    ->get()
+                    ->unique();
                 break;
             case 'trend':
                 break;
             default:
-                $query = Currency::has('rates')->orderBy($request->column, $request->order);
+                $query = Currency::has('rates')->orderBy($request->column, $request->order)->get();
         }
 
-        $currencies = $query->paginate(5);
+        $currencies = new LengthAwarePaginator($query->forPage($request->page, 5), $query->count(), 5);
 
         return CurrencyResource::collection($currencies);
     }

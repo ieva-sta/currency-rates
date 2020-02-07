@@ -37,7 +37,7 @@ class Currency extends Model
      */
     public function rates(): HasMany
     {
-        return $this->hasMany(Rate::class)->orderBy('date', 'desc');
+        return $this->hasMany(Rate::class)->orderBy('date', 'asc');
     }
 
     /**
