@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="d-flex justify-content-center">
         <canvas :id="graphId" :height="this.height" :width="this.width"></canvas>
     </div>
 </template>
@@ -16,7 +16,7 @@
             }
         },
         mounted() {
-            axios.get('/valuta/' + this.currency.code + '/graph/' + this.days)
+            axios.get('/currency/' + this.currency.code + '/graph/' + this.days)
                 .then(response => {
                     this.labels = response.data.labels
                     this.rates = response.data.rates

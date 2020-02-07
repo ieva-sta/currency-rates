@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CurrencyResource;
 use App\Models\Currency;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
@@ -32,10 +36,34 @@ class CurrencyController extends Controller
     public function show(Currency $currency)
     {
         return view('currency.show')->with([
-            'currency' => $currency
+            'currency'   => $currency,
+            'currencies' => Currency::has('rates')->get()
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return AnonymousResourceCollection
+     */
+    public function getCurrencyData(Request $request)
+    {
+        switch ($request->column) {
+            case 'rate':
+                $query = Currency::has('rates')
+                    ->join('rates', 'rates.currency_id', '=', 'currencies.id')
+                    ->select('currencies.*')
+                    ->orderBy('rates.price', $request->order)
+                    ->get()
+                    ->unique();
+                break;
+            default:
+                $query = Currency::has('rates')->orderBy($request->column, $request->order)->get();
+        }
+
+        $currencies = new LengthAwarePaginator($query->forPage($request->page, 5), $query->count(), 5);
+
+        return CurrencyResource::collection($currencies);
+    }
 
     /**
      * Fetch currency rates from the last 30 days
