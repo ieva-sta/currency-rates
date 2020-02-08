@@ -16802,6 +16802,11 @@ readers do not read off random characters that represent icons */
   font-weight: 400;
 }
 
+.col-lg-8.bg-white {
+    border: 12px solid #7983F4;
+    border-radius: 20px;
+}
+
 .fa-caret-up {
   color: #52de97;
 }

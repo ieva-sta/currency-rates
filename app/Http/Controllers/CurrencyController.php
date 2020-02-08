@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CurrencyResource;
+use App\Http\Resources\RateResource;
 use App\Models\Currency;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
@@ -84,5 +85,30 @@ class CurrencyController extends Controller
         ];
 
         return response()->json($data);
+    }
+
+    /**
+     * @param Currency $currency
+     * @param Request $request
+     * @return AnonymousResourceCollection
+     */
+    public function getRates(Currency $currency, Request $request)
+    {
+        $rates = $currency->rates->sortByDesc('date');
+        $rates = new LengthAwarePaginator($rates->forPage($request->page, 5), $rates->count(), 5);
+
+        return RateResource::collection($rates);
+    }
+
+    public function getAllCurrencies()
+    {
+        $currencies = Currency::has('rates')->get();
+        $eur = Currency::where('code', 'EUR')->first();
+
+        $currencies->prepend($eur);
+
+        return response()->json([
+            'data' => $currencies
+        ]);
     }
 }

@@ -26,6 +26,8 @@
 
                 <graph :graph-id="{{ $currency->id }}" :currency="{{ $currency }}" :show-labels="true"
                        :days="30"></graph>
+
+                <currency-data-table fetch-url="{{ route('currency.rates', $currency->code) }}"></currency-data-table>
             </div>
         </div>
     </div>
