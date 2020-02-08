@@ -2161,7 +2161,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         scales: {
           xAxes: [{
             ticks: {
-              display: this.showLabels
+                display: this.showLabels,
+                maxRotation: 45,
+                minRotation: 45
             },
             gridLines: {
               display: false
@@ -2440,7 +2442,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
         });
 
-        /***/ }),
+        /***/
+    }),
 
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.js":
 /*!*****************************************************!*\
@@ -84754,7 +84757,8 @@ __webpack_require__.r(__webpack_exports__);
         });
 
 
-        /***/ }),
+        /***/
+    }),
 
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\

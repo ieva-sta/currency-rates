@@ -38,6 +38,8 @@
                         xAxes: [{
                             ticks: {
                                 display: this.showLabels,
+                                maxRotation: 45,
+                                minRotation: 45
                             },
                             gridLines: {
                                 display: false,

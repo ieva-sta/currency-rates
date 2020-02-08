@@ -25,7 +25,7 @@ class CurrencyResource extends JsonResource
         ];
 
         if ($request->currency === 'EUR') {
-            $data['rate'] = number_format($this->rates->last()->price, 8);
+            $data['rate'] = number_format($this->rates->last()->price, 8, '.', '');
 
             return $data;
         }
@@ -34,7 +34,7 @@ class CurrencyResource extends JsonResource
         $selectedCurrencyRate = $selectedCurrency ? 1 / $selectedCurrency : 1;
         $rate = $selectedCurrencyRate * $this->rates->last()->price;
 
-        $data['rate'] = number_format($rate, 8);
+        $data['rate'] = number_format($rate, 8, '.', '');
 
         return $data;
     }
