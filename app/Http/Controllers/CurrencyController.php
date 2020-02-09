@@ -101,7 +101,7 @@ class CurrencyController extends Controller
     public function getRates(Currency $currency, Request $request)
     {
         $rates = $currency->rates->sortByDesc('date');
-        $rates = new LengthAwarePaginator($rates->forPage($request->page, 5), $rates->count(), 5);
+        $rates = new LengthAwarePaginator($rates->forPage($request->page, 7), $rates->count(), 7);
 
         return RateResource::collection($rates);
     }

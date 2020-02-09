@@ -17,8 +17,8 @@ class RateResource extends JsonResource
     {
         return [
             'id'    => $this->id,
-            'price' => $this->price,
-            'date'  => $this->date
+            'price' => number_format($this->price, 8),
+            'date'  => $this->date->format('d.m.Y')
         ];
     }
 }
