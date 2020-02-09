@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 // Variables
 @import 'variables';
+@import 'show';
+@import 'sidenav';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 // Fontawesome
@@ -9,6 +11,9 @@
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
 @import '~@fortawesome/fontawesome-free/scss/regular.scss';
 
+//main {
+//    min-height: 100vh;
+//}
 
 .col-lg-8.bg-white {
     border: 12px solid #7983F4;
@@ -53,7 +58,7 @@ $colors: #fb6262, #fb8d62, #fbc062, #dcfb62, #62fb8d, #62fbdf, #62cbfb, #a462fb,
 }
 
 li.currency-list.active {
-    background: rgba(97, 123, 227, 0.5);
+    background: rgba(#ffcc00, 0.6);
 
     a {
         color: #fff;

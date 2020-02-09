@@ -1,29 +1,11 @@
 <template>
     <div class="d-flex justify-content-center">
-        <div class="data-table col-8 p-5">
-            <h3 class="text-center my-3">Previous rates</h3>
-            <table class="table table-hover">
-                <thead>
-                <tr class="text-center">
-                    <th scope="col">Rate</th>
-                    <th scope="col">Date</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="" v-if="tableData.length === 0">
-                    <td class="lead text-center">No data found.</td>
-                </tr>
-                <tr v-for="rate in tableData" :key="rate.id" v-else class="rate-list text-center">
-                    <td>
-                        {{ rate.price }}
-                    </td>
-                    <td>
-                        {{ rate.date }}
-                    </td>
-                </tr>
-                </tbody>
-
-            </table>
+        <div class="currency-data-table col-7 py-2">
+            <div class="bg-white shadow-sm m-2 rounded d-flex justify-content-between p-3" v-for="rate in tableData"
+                 :key="rate.id">
+                <div>{{ rate.date }}</div>
+                <div>{{ rate.price }}</div>
+            </div>
             <nav v-if="pagination && tableData.length > 0" class="d-flex flex-column align-items-center">
                 <ul class="pagination mb-1">
                     <li class="page-item" :class="{'disabled' : currentPage === 1}">

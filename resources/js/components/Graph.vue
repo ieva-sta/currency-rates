@@ -11,8 +11,8 @@
             return {
                 labels: [],
                 rates: [],
-                height: this.showLabels ? '400' : '50',
-                width: this.showLabels ? '900' : '150'
+                height: this.showLabels ? '200' : '50',
+                width: this.showLabels ? '1150' : '150'
             }
         },
         mounted() {
@@ -37,9 +37,7 @@
                     scales: {
                         xAxes: [{
                             ticks: {
-                                display: this.showLabels,
-                                maxRotation: 45,
-                                minRotation: 45
+                                display: this.showLabels
                             },
                             gridLines: {
                                 display: false,
@@ -62,7 +60,19 @@
                             gridLines: {
                                 display: false,
                             },
+                            ticks: {
+                                fontColor: 'rgba(255, 255, 255, .6)'
+                            }
                         }],
+                        yAxes: [{
+                            gridLines: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        }]
                     }
                 };
 
@@ -78,6 +88,11 @@
                 backgroundGradient.addColorStop(0.5, 'rgba(97, 123, 227, 0.05)');
                 backgroundGradient.addColorStop(1, 'rgba(97, 123, 227, 0)');
 
+                let whiteBackgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
+                backgroundGradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
+                backgroundGradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.05)');
+                backgroundGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
                 let lineGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
                 lineGradient.addColorStop(0, 'rgba(97, 123, 227, 0.8)');
                 lineGradient.addColorStop(0.5, 'rgba(97, 184, 227, 0.8)');
@@ -92,8 +107,10 @@
                             data: this.rates,
                             lineTension: .4,
                             backgroundColor: backgroundGradient,
-                            borderColor: lineGradient,
-                            borderWidth: this.showLabels ? 3 : 2
+                            borderColor: this.showLabels ? whiteBackgroundGradient : lineGradient,
+                            borderWidth: this.showLabels ? 3 : 2,
+                            pointBorderWidth: 1,
+                            pointBackgroundColor: 'rgba(255, 255, 255, .7)'
                         }],
 
                     },

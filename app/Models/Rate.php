@@ -17,6 +17,13 @@ class Rate extends Model
     ];
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'date' => 'datetime:d.m.Y',
+    ];
+
+    /**
      * @return BelongsTo
      */
     public function currency(): BelongsTo

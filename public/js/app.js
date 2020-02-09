@@ -1934,25 +1934,6 @@ module.exports = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
         /* harmony default export */
         __webpack_exports__["default"] = ({
             props: {
@@ -2133,8 +2114,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       labels: [],
       rates: [],
-      height: this.showLabels ? '400' : '50',
-      width: this.showLabels ? '900' : '150'
+        height: this.showLabels ? '200' : '50',
+        width: this.showLabels ? '1150' : '150'
     };
   },
   mounted: function mounted() {
@@ -2161,9 +2142,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         scales: {
           xAxes: [{
             ticks: {
-                display: this.showLabels,
-                maxRotation: 45,
-                minRotation: 45
+                display: this.showLabels
             },
             gridLines: {
               display: false
@@ -2184,8 +2163,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           xAxes: [{
             gridLines: {
               display: false
-            }
-          }]
+            },
+              ticks: {
+                  fontColor: 'rgba(255, 255, 255, .6)'
+              }
+          }],
+            yAxes: [{
+                gridLines: {
+                    display: false,
+                    drawBorder: false
+                },
+                ticks: {
+                    display: false
+                }
+            }]
         }
       };
       var options = {
@@ -2198,6 +2189,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       backgroundGradient.addColorStop(0, 'rgba(97, 123, 227, 0.1)');
       backgroundGradient.addColorStop(0.5, 'rgba(97, 123, 227, 0.05)');
       backgroundGradient.addColorStop(1, 'rgba(97, 123, 227, 0)');
+        var whiteBackgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
+        backgroundGradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
+        backgroundGradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.05)');
+        backgroundGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
       var lineGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
       lineGradient.addColorStop(0, 'rgba(97, 123, 227, 0.8)');
       lineGradient.addColorStop(0.5, 'rgba(97, 184, 227, 0.8)');
@@ -2211,8 +2206,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             data: this.rates,
             lineTension: .4,
             backgroundColor: backgroundGradient,
-            borderColor: lineGradient,
-            borderWidth: this.showLabels ? 3 : 2
+              borderColor: this.showLabels ? whiteBackgroundGradient : lineGradient,
+              borderWidth: this.showLabels ? 3 : 2,
+              pointBorderWidth: 1,
+              pointBackgroundColor: 'rgba(255, 255, 255, .7)'
           }]
         },
         options: _objectSpread({}, options, {}, this.showLabels && largeGraphOptions, {}, !this.showLabels && smallGraphOptions)
@@ -71589,86 +71586,94 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
             var _h = _vm.$createElement
             var _c = _vm._self._c || _h
             return _c("div", {staticClass: "d-flex justify-content-center"}, [
-                _c("div", {staticClass: "data-table col-8 p-5"}, [
-                    _c("h3", {staticClass: "text-center my-3"}, [_vm._v("Previous rates")]),
-                    _vm._v(" "),
-                    _c("table", {staticClass: "table table-hover"}, [
-                        _vm._m(0),
-                        _vm._v(" "),
-                        _c(
-                            "tbody",
-                            [
-                                _vm.tableData.length === 0
-                                    ? _c("tr", {}, [
-                                        _c("td", {staticClass: "lead text-center"}, [
-                                            _vm._v("No data found.")
-                                        ])
-                                    ])
-                                    : _vm._l(_vm.tableData, function (rate) {
-                                        return _c(
-                                            "tr",
-                                            {key: rate.id, staticClass: "rate-list text-center"},
-                                            [
-                                                _c("td", [
-                                                    _vm._v(
-                                                        "\n                    " +
-                                                        _vm._s(rate.price) +
-                                                        "\n                "
-                                                    )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("td", [
-                                                    _vm._v(
-                                                        "\n                    " +
-                                                        _vm._s(rate.date) +
-                                                        "\n                "
-                                                    )
-                                                ])
-                                            ]
-                                        )
-                                    })
-                            ],
-                            2
-                        )
-                    ]),
-                    _vm._v(" "),
-                    _vm.pagination && _vm.tableData.length > 0
-                        ? _c("nav", {staticClass: "d-flex flex-column align-items-center"}, [
-                            _c(
-                                "ul",
-                                {staticClass: "pagination mb-1"},
+                _c(
+                    "div",
+                    {staticClass: "currency-data-table col-7 py-2"},
+                    [
+                        _vm._l(_vm.tableData, function (rate) {
+                            return _c(
+                                "div",
+                                {
+                                    key: rate.id,
+                                    staticClass:
+                                        "bg-white shadow-sm m-2 rounded d-flex justify-content-between p-3"
+                                },
                                 [
-                                    _c(
-                                        "li",
-                                        {
-                                            staticClass: "page-item",
-                                            class: {disabled: _vm.currentPage === 1}
-                                        },
-                                        [
-                                            _c(
-                                                "a",
-                                                {
-                                                    staticClass: "page-link",
-                                                    attrs: {href: "#"},
-                                                    on: {
-                                                        click: function ($event) {
-                                                            $event.preventDefault()
-                                                            return _vm.changePage(_vm.currentPage - 1)
+                                    _c("div", [_vm._v(_vm._s(rate.date))]),
+                                    _vm._v(" "),
+                                    _c("div", [_vm._v(_vm._s(rate.price))])
+                                ]
+                            )
+                        }),
+                        _vm._v(" "),
+                        _vm.pagination && _vm.tableData.length > 0
+                            ? _c(
+                            "nav",
+                            {staticClass: "d-flex flex-column align-items-center"},
+                            [
+                                _c(
+                                    "ul",
+                                    {staticClass: "pagination mb-1"},
+                                    [
+                                        _c(
+                                            "li",
+                                            {
+                                                staticClass: "page-item",
+                                                class: {disabled: _vm.currentPage === 1}
+                                            },
+                                            [
+                                                _c(
+                                                    "a",
+                                                    {
+                                                        staticClass: "page-link",
+                                                        attrs: {href: "#"},
+                                                        on: {
+                                                            click: function ($event) {
+                                                                $event.preventDefault()
+                                                                return _vm.changePage(_vm.currentPage - 1)
+                                                            }
                                                         }
+                                                    },
+                                                    [_vm._v("Previous")]
+                                                )
+                                            ]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.pagesNumber, function (page) {
+                                            return _c(
+                                                "li",
+                                                {
+                                                    staticClass: "page-item",
+                                                    class: {
+                                                        active: page == _vm.pagination.meta.current_page
                                                     }
                                                 },
-                                                [_vm._v("Previous")]
+                                                [
+                                                    _c(
+                                                        "a",
+                                                        {
+                                                            staticClass: "page-link",
+                                                            attrs: {href: "javascript:void(0)"},
+                                                            on: {
+                                                                click: function ($event) {
+                                                                    $event.preventDefault()
+                                                                    return _vm.changePage(page)
+                                                                }
+                                                            }
+                                                        },
+                                                        [_vm._v(_vm._s(page))]
+                                                    )
+                                                ]
                                             )
-                                        ]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm._l(_vm.pagesNumber, function (page) {
-                                        return _c(
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
                                             "li",
                                             {
                                                 staticClass: "page-item",
                                                 class: {
-                                                    active: page == _vm.pagination.meta.current_page
+                                                    disabled:
+                                                        _vm.currentPage === _vm.pagination.meta.last_page
                                                 }
                                             },
                                             [
@@ -71676,68 +71681,30 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                                                     "a",
                                                     {
                                                         staticClass: "page-link",
-                                                        attrs: {href: "javascript:void(0)"},
+                                                        attrs: {href: "#"},
                                                         on: {
                                                             click: function ($event) {
                                                                 $event.preventDefault()
-                                                                return _vm.changePage(page)
+                                                                return _vm.changePage(_vm.currentPage + 1)
                                                             }
                                                         }
                                                     },
-                                                    [_vm._v(_vm._s(page))]
+                                                    [_vm._v("Next")]
                                                 )
                                             ]
                                         )
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                        "li",
-                                        {
-                                            staticClass: "page-item",
-                                            class: {
-                                                disabled:
-                                                    _vm.currentPage === _vm.pagination.meta.last_page
-                                            }
-                                        },
-                                        [
-                                            _c(
-                                                "a",
-                                                {
-                                                    staticClass: "page-link",
-                                                    attrs: {href: "#"},
-                                                    on: {
-                                                        click: function ($event) {
-                                                            $event.preventDefault()
-                                                            return _vm.changePage(_vm.currentPage + 1)
-                                                        }
-                                                    }
-                                                },
-                                                [_vm._v("Next")]
-                                            )
-                                        ]
-                                    )
-                                ],
-                                2
+                                    ],
+                                    2
+                                )
+                            ]
                             )
-                        ])
-                        : _vm._e()
-                ])
+                            : _vm._e()
+                    ],
+                    2
+                )
             ])
         }
-        var staticRenderFns = [
-            function () {
-                var _vm = this
-                var _h = _vm.$createElement
-                var _c = _vm._self._c || _h
-                return _c("thead", [
-                    _c("tr", {staticClass: "text-center"}, [
-                        _c("th", {attrs: {scope: "col"}}, [_vm._v("Rate")]),
-                        _vm._v(" "),
-                        _c("th", {attrs: {scope: "col"}}, [_vm._v("Date")])
-                    ])
-                ])
-            }
-        ]
+        var staticRenderFns = []
         render._withStripped = true
 
 

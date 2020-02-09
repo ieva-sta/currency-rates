@@ -36,9 +36,12 @@ class CurrencyController extends Controller
      */
     public function show(Currency $currency)
     {
+        $currencies = Currency::has('rates')->get()->except($currency->id);
+        $currencies->prepend($currency);
+
         return view('currency.show')->with([
             'currency'   => $currency,
-            'currencies' => Currency::has('rates')->get()
+            'currencies' => $currencies
         ]);
     }
 
@@ -79,8 +82,12 @@ class CurrencyController extends Controller
             ->where('date', '>=', Carbon::now()->subDays($days))
             ->orderBy('date');
 
+        $labels = $rates->pluck('date')->map(function ($date) {
+            return $date->format('d.m');
+        })->toArray();
+
         $data = [
-            'labels' => $rates->pluck('date')->toArray(),
+            'labels' => $labels,
             'rates'  => $rates->pluck('price')->toArray()
         ];
 

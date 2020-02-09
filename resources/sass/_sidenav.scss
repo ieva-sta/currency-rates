@@ -1,0 +1,44 @@
+.main-menu::-webkit-scrollbar {
+    display: none;
+}
+
+.main-menu {
+    scrollbar-width: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 55px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    transition: width .1s linear;
+    transform: translateZ(0) scale(1, 1);
+    z-index: 1000;
+}
+
+.main-menu:hover, nav.main-menu.expanded {
+    width: 250px;
+    overflow-x: visible;
+}
+
+.main-menu > ul {
+    margin: 7px 0;
+
+    li {
+        width: 250px;
+
+        a {
+            transform: translateZ(0) scale(1, 1);
+            transition: all .2s linear;
+            padding-left: 8px;
+        }
+    }
+}
+
+nav ul, nav li {
+    outline: 0;
+    margin: 0;
+    padding: 0;
+}
+
