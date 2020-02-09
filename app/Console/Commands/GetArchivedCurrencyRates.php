@@ -45,7 +45,8 @@ class GetArchivedCurrencyRates extends Command
         $day = $this->argument('day');
         $month = $this->argument('month');
         $year = $this->argument('year');
-        $date = new Carbon($year . '-' . $month . '-' . $day);
+        $ymd = $year . '-' . $month . '-' . $day;
+        $date = new Carbon($ymd);
 
         $url = 'https://www.bank.lv/vk/ecb.xml?date=' . $year . $month . $day;
 
@@ -72,7 +73,7 @@ class GetArchivedCurrencyRates extends Command
                 ]);
             }
 
-            echo "Currency rates updated";
+            echo $ymd . ": Currency rates updated \n";
         } catch (Exception $e) {
             echo $e->getMessage();
         }
