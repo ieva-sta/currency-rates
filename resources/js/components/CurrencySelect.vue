@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="d-flex align-items-center">
         <div>
-            <h6>Currency:</h6>
+            <h6 class="mb-0 mr-3">Currency:</h6>
         </div>
         <div>
             <select class="form-control" id="exampleFormControlSelect1" v-model="selected_currency">

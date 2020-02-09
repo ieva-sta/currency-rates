@@ -1,4 +1,14 @@
 .currency-header {
-    background: #7983F4;
+    background: $primary;
     color: #fff;
+
+    h1, h2 {
+        color: rgba(#fff, .9);
+    }
+
+    h1 {
+        font-size: 3.5em;
+    }
 }
+
+

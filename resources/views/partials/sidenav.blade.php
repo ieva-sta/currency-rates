@@ -1,7 +1,13 @@
 <nav class="main-menu bg-white">
     <ul>
+        <li class="nav-item">
+            <a href="{{ route('currency.index') }}" class="nav-link">
+                <i class="fas fa-2x fa-home mr-2 ml-1"></i>
+                Home
+            </a>
+        </li>
         @foreach($currencies as $item)
-            <li class="nav-item has-subnav currency-list list-group-item-action {{ $item->code === $currency->code ? 'active' : '' }}">
+            <li class="nav-item has-subnav currency-list list-group-item-action">
                 <a class="nav-link d-flex align-items-center"
                    href="{{ route('currency.show', $item->code) }}">
                     <div

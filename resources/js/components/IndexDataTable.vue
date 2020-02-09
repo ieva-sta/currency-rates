@@ -49,7 +49,7 @@
                 <td>
                     <a :href="`currency/${currency.code}`"
                        class="d-flex align-items-center justify-content-center">
-                        <div>
+                        <div class="mr-3">
                             <graph :currency="currency" :graph-id="currency.id"
                                    :show-labels="false" :days="7"></graph>
                         </div>

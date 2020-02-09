@@ -37,7 +37,6 @@ class CurrencyController extends Controller
     public function show(Currency $currency)
     {
         $currencies = Currency::has('rates')->get()->except($currency->id);
-        $currencies->prepend($currency);
 
         return view('currency.show')->with([
             'currency'   => $currency,

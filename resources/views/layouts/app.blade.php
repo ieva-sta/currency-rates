@@ -19,8 +19,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-white">
-<div id="app">
+<body>
+<div id="app" class="bg-white d-flex flex-column justify-content-center">
     <main>
         @yield('content')
     </main>

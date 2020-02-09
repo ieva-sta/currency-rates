@@ -1934,6 +1934,7 @@ module.exports = {
 //
 //
 //
+//
         /* harmony default export */
         __webpack_exports__["default"] = ({
             props: {
@@ -2113,9 +2114,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       labels: [],
-      rates: [],
-        height: this.showLabels ? '200' : '50',
-        width: this.showLabels ? '1150' : '150'
+        rates: []
     };
   },
   mounted: function mounted() {
@@ -2185,32 +2184,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
         responsive: false
       };
-      var backgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
-      backgroundGradient.addColorStop(0, 'rgba(97, 123, 227, 0.1)');
-      backgroundGradient.addColorStop(0.5, 'rgba(97, 123, 227, 0.05)');
-      backgroundGradient.addColorStop(1, 'rgba(97, 123, 227, 0)');
+        var blueBackgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
+        blueBackgroundGradient.addColorStop(0, 'rgba(97, 123, 227, .1)');
+        blueBackgroundGradient.addColorStop(0.1, 'rgba(97, 123, 227, 0.1)');
+        blueBackgroundGradient.addColorStop(0.2, 'rgba(97, 123, 227, 0.02)');
+        blueBackgroundGradient.addColorStop(1, 'rgba(97, 123, 227, 0)');
         var whiteBackgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
-        backgroundGradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
-        backgroundGradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.05)');
-        backgroundGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        whiteBackgroundGradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
+        whiteBackgroundGradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.05)');
+        whiteBackgroundGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.02)');
+        whiteBackgroundGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
       var lineGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
-      lineGradient.addColorStop(0, 'rgba(97, 123, 227, 0.8)');
-      lineGradient.addColorStop(0.5, 'rgba(97, 184, 227, 0.8)');
-      lineGradient.addColorStop(1, 'rgba(97, 223, 227, 0.8)');
-      var graph = new Chart(currencyGraph, {
-        type: 'line',
-        data: {
-          labels: this.labels,
-          datasets: [{
+        lineGradient.addColorStop(0, 'rgba(97, 123, 227, 0.5)');
+        lineGradient.addColorStop(0.5, 'rgba(97, 184, 227, 0.5)');
+        lineGradient.addColorStop(1, 'rgba(97, 223, 227, 0.5)');
+        var datasetsOptions = {
             label: 'rate',
             data: this.rates,
             lineTension: .4,
-            backgroundColor: backgroundGradient,
-              borderColor: this.showLabels ? whiteBackgroundGradient : lineGradient,
-              borderWidth: this.showLabels ? 3 : 2,
-              pointBorderWidth: 1,
-              pointBackgroundColor: 'rgba(255, 255, 255, .7)'
-          }]
+            backgroundColor: this.showLabels ? whiteBackgroundGradient : blueBackgroundGradient,
+            borderColor: this.showLabels ? 'rgba(255,255,255, .2)' : lineGradient,
+            borderWidth: this.showLabels ? 3 : 2,
+            pointBorderWidth: 1,
+            pointBackgroundColor: 'rgba(255, 255, 255, .7)'
+        };
+        var graph = new Chart(currencyGraph, {
+            type: 'line',
+            data: {
+                labels: this.labels,
+                datasets: [datasetsOptions]
         },
         options: _objectSpread({}, options, {}, this.showLabels && largeGraphOptions, {}, !this.showLabels && smallGraphOptions)
       });
@@ -71733,7 +71735,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
             var _vm = this
             var _h = _vm.$createElement
             var _c = _vm._self._c || _h
-            return _c("div", [
+            return _c("div", {staticClass: "d-flex align-items-center"}, [
                 _vm._m(0),
                 _vm._v(" "),
                 _c("div", [
@@ -71792,7 +71794,9 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                 var _vm = this
                 var _h = _vm.$createElement
                 var _c = _vm._self._c || _h
-                return _c("div", [_c("h6", [_vm._v("Currency:")])])
+                return _c("div", [
+                    _c("h6", {staticClass: "mb-0 mr-3"}, [_vm._v("Currency:")])
+                ])
             }
         ]
         render._withStripped = true
@@ -71825,7 +71829,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
             var _c = _vm._self._c || _h
             return _c("div", {staticClass: "d-flex justify-content-center"}, [
                 _c("canvas", {
-                    attrs: {id: _vm.graphId, height: this.height, width: this.width}
+                    attrs: {id: _vm.graphId, height: this.showLabels ? "300" : "60"}
                 })
             ])
         }
@@ -72026,6 +72030,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                                                     [
                                                         _c(
                                                             "div",
+                                                            {staticClass: "mr-3"},
                                                             [
                                                                 _c("graph", {
                                                                     attrs: {

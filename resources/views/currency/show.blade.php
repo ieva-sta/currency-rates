@@ -6,8 +6,10 @@
             @include('partials.sidenav')
             <div class="col bg-light shadow p-0">
                 <div class="currency-header">
-                    <h1 class="text-center py-5 mb-4">{{ $currency->title }}</h1>
-
+                    <div class="py-5">
+                        <h1 class="text-center font-weight-bold">{{ $currency->title }}</h1>
+                        <h2 class="text-center font-weight-bold">{{ $currency->rates->last()->price }}</h2>
+                    </div>
                     <graph :graph-id="{{ $currency->id }}" :currency="{{ $currency }}" :show-labels="true"
                            :days="30"></graph>
                 </div>

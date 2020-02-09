@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex justify-content-center">
-        <canvas :id="graphId" :height="this.height" :width="this.width"></canvas>
+        <canvas :id="graphId" :height="this.showLabels ? '300' : '60'"></canvas>
     </div>
 </template>
 
@@ -10,9 +10,7 @@
         data() {
             return {
                 labels: [],
-                rates: [],
-                height: this.showLabels ? '200' : '50',
-                width: this.showLabels ? '1150' : '150'
+                rates: []
             }
         },
         mounted() {
@@ -83,36 +81,39 @@
                     responsive: false
                 };
 
-                let backgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
-                backgroundGradient.addColorStop(0, 'rgba(97, 123, 227, 0.1)');
-                backgroundGradient.addColorStop(0.5, 'rgba(97, 123, 227, 0.05)');
-                backgroundGradient.addColorStop(1, 'rgba(97, 123, 227, 0)');
+                let blueBackgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
+                blueBackgroundGradient.addColorStop(0, 'rgba(97, 123, 227, .1)');
+                blueBackgroundGradient.addColorStop(0.1, 'rgba(97, 123, 227, 0.1)');
+                blueBackgroundGradient.addColorStop(0.2, 'rgba(97, 123, 227, 0.02)');
+                blueBackgroundGradient.addColorStop(1, 'rgba(97, 123, 227, 0)');
 
                 let whiteBackgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
-                backgroundGradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
-                backgroundGradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.05)');
-                backgroundGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                whiteBackgroundGradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
+                whiteBackgroundGradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.05)');
+                whiteBackgroundGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.02)');
+                whiteBackgroundGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
                 let lineGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
-                lineGradient.addColorStop(0, 'rgba(97, 123, 227, 0.8)');
-                lineGradient.addColorStop(0.5, 'rgba(97, 184, 227, 0.8)');
-                lineGradient.addColorStop(1, 'rgba(97, 223, 227, 0.8)');
+                lineGradient.addColorStop(0, 'rgba(97, 123, 227, 0.5)');
+                lineGradient.addColorStop(0.5, 'rgba(97, 184, 227, 0.5)');
+                lineGradient.addColorStop(1, 'rgba(97, 223, 227, 0.5)');
+
+                let datasetsOptions = {
+                    label: 'rate',
+                    data: this.rates,
+                    lineTension: .4,
+                    backgroundColor: this.showLabels ? whiteBackgroundGradient : blueBackgroundGradient,
+                    borderColor: this.showLabels ? 'rgba(255,255,255, .2)' : lineGradient,
+                    borderWidth: this.showLabels ? 3 : 2,
+                    pointBorderWidth: 1,
+                    pointBackgroundColor: 'rgba(255, 255, 255, .7)'
+                };
 
                 let graph = new Chart(currencyGraph, {
                     type: 'line',
                     data: {
                         labels: this.labels,
-                        datasets: [{
-                            label: 'rate',
-                            data: this.rates,
-                            lineTension: .4,
-                            backgroundColor: backgroundGradient,
-                            borderColor: this.showLabels ? whiteBackgroundGradient : lineGradient,
-                            borderWidth: this.showLabels ? 3 : 2,
-                            pointBorderWidth: 1,
-                            pointBackgroundColor: 'rgba(255, 255, 255, .7)'
-                        }],
-
+                        datasets: [datasetsOptions]
                     },
                     options: {...options, ...(this.showLabels) && largeGraphOptions, ...(!this.showLabels) && smallGraphOptions}
                 });

@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Nunito|Montserrat:400,800');
 // Variables
 @import 'variables';
 @import 'show';
@@ -9,15 +9,23 @@
 // Fontawesome
 @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
-@import '~@fortawesome/fontawesome-free/scss/regular.scss';
 
-//main {
-//    min-height: 100vh;
-//}
+body {
+    font-family: 'Montserrat', sans-serif;
+}
 
 .col-lg-8.bg-white {
-    border: 12px solid #7983F4;
     border-radius: 20px;
+}
+
+#app, .index {
+    min-height: 100vh;
+}
+
+.index {
+    background: #4e54c8; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .fa-caret-up {
@@ -29,10 +37,11 @@
 }
 
 td a {
-    color: #777;
+    color: #4d4646;
 
     &:hover {
         text-decoration: none;
+        color: desaturate($primary, 20%);
     }
 }
 
@@ -46,7 +55,7 @@ $colors: #fb6262, #fb8d62, #fbc062, #dcfb62, #62fb8d, #62fbdf, #62cbfb, #a462fb,
     @for $i from 1 through length($colors) {
         .currency-list:nth-child(#{length($colors)}n+#{$i}) .currency-logo {
             background: lighten(nth($colors, $i), 25%);
-            color: darken(nth($colors, $i), 10%);
+            color: darken(desaturate(nth($colors, $i), 40%), 10%);
         }
     }
 }
@@ -57,15 +66,14 @@ $colors: #fb6262, #fb8d62, #fbc062, #dcfb62, #62fb8d, #62fbdf, #62cbfb, #a462fb,
     border-radius: 15px;
 }
 
-li.currency-list.active {
-    background: rgba(#ffcc00, 0.6);
+.currency-header {
+    padding-left: 4em;
 
-    a {
-        color: #fff;
+    canvas {
+        width: 100%;
     }
 }
 
-li.currency-list .currency-logo {
-    width: 40px;
-    height: 40px;
+td canvas {
+    width: 65%;
 }
