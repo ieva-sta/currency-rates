@@ -101,7 +101,6 @@
                 },
                 offset: 4,
                 currentPage: 1,
-                perPage: 7,
                 sortedColumn: 'id',
                 order: 'asc',
                 selected_currency: 'EUR'

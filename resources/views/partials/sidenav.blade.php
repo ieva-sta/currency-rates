@@ -1,20 +1,21 @@
-<nav class="main-menu bg-white">
+<nav class="main-menu bg-primary shadow">
     <ul>
         <li class="nav-item">
             <a href="{{ route('currency.index') }}" class="nav-link">
-                <i class="fas fa-2x fa-home mr-2 ml-1"></i>
+                <i class="fas fa-2x fa-home mr-2"></i>
                 Home
             </a>
         </li>
         @foreach($currencies as $item)
-            <li class="nav-item has-subnav currency-list list-group-item-action">
-                <a class="nav-link d-flex align-items-center"
+            <li class="nav-item">
+                <a class="nav-link p-0 d-flex justify-content-between align-items-center"
                    href="{{ route('currency.show', $item->code) }}">
-                    <div
-                        class="currency-logo d-flex align-items-center justify-content-center font-weight-bold">
+                    <div class="p-2 symbol text-center">
                         {{ $item->symbol }}
                     </div>
-                    <span class="mb-0 ml-2">{{ $item->title }}</span>
+                    <div class="currency-title text-right pr-3">
+                        {{ $item->title }}
+                    </div>
                 </a>
             </li>
         @endforeach
