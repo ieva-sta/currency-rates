@@ -20,7 +20,7 @@ class Rate extends Model
      * @var array
      */
     protected $casts = [
-        'date' => 'datetime:d.m.Y',
+        'date' => 'datetime:d.m.Y H:i:s'
     ];
 
     /**

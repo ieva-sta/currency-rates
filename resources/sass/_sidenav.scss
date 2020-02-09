@@ -25,19 +25,33 @@
 .main-menu > ul li {
     width: 250px;
 
-    &:first-child {
-        margin-top: .5em;
+    &:hover {
+        background: lighten($primary, 10%);
     }
 
-    .currency-logo {
-        width: 40px;
-        height: 40px;
+    &:first-child {
+        padding: .5em 0;
+
+        i {
+            color: #fff;
+        }
     }
 
     a {
         transform: translateZ(0) scale(1, 1);
         transition: all .2s linear;
-        padding-left: 8px;
+        padding-left: 10px;
+        color: rgba(#fff, .9);
+
+        .symbol {
+            font-size: 1.2em;
+            font-weight: 700;
+            width: 22%;
+        }
+
+        .currency-title {
+            width: 78%;
+        }
     }
 }
 

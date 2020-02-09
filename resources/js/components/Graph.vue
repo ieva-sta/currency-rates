@@ -57,18 +57,6 @@
                         xAxes: [{
                             gridLines: {
                                 display: false,
-                            },
-                            ticks: {
-                                fontColor: 'rgba(255, 255, 255, .6)'
-                            }
-                        }],
-                        yAxes: [{
-                            gridLines: {
-                                display: false,
-                                drawBorder: false
-                            },
-                            ticks: {
-                                display: false
                             }
                         }]
                     }
@@ -81,29 +69,28 @@
                     responsive: false
                 };
 
-                let blueBackgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
-                blueBackgroundGradient.addColorStop(0, 'rgba(97, 123, 227, .1)');
-                blueBackgroundGradient.addColorStop(0.1, 'rgba(97, 123, 227, 0.1)');
-                blueBackgroundGradient.addColorStop(0.2, 'rgba(97, 123, 227, 0.02)');
-                blueBackgroundGradient.addColorStop(1, 'rgba(97, 123, 227, 0)');
+                let smallChartBackgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
+                smallChartBackgroundGradient.addColorStop(0, 'rgba(136, 147, 175, .5)');
+                smallChartBackgroundGradient.addColorStop(0.1, 'rgba(136, 147, 175, 0.1)');
+                smallChartBackgroundGradient.addColorStop(0.2, 'rgba(136, 147, 175, 0.02)');
+                smallChartBackgroundGradient.addColorStop(1, 'rgba(136, 147, 175, 0)');
 
-                let whiteBackgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
-                whiteBackgroundGradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
-                whiteBackgroundGradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.05)');
-                whiteBackgroundGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.02)');
-                whiteBackgroundGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                let largeChartBackgroundGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
+                largeChartBackgroundGradient.addColorStop(0, 'rgba(136, 147, 175, 1)');
+                largeChartBackgroundGradient.addColorStop(0.5, 'rgba(136, 147, 175, 0.5)');
+                largeChartBackgroundGradient.addColorStop(1, 'rgba(136, 147, 175, .2)');
 
                 let lineGradient = currencyGraph.createLinearGradient(0, 0, 0, 450);
-                lineGradient.addColorStop(0, 'rgba(97, 123, 227, 0.5)');
-                lineGradient.addColorStop(0.5, 'rgba(97, 184, 227, 0.5)');
-                lineGradient.addColorStop(1, 'rgba(97, 223, 227, 0.5)');
+                lineGradient.addColorStop(0, 'rgba(136, 147, 175, 0.5)');
+                lineGradient.addColorStop(0.5, 'rgba(136, 147, 175, 0.5)');
+                lineGradient.addColorStop(1, 'rgba(136, 147, 175, 0.5)');
 
                 let datasetsOptions = {
                     label: 'rate',
                     data: this.rates,
                     lineTension: .4,
-                    backgroundColor: this.showLabels ? whiteBackgroundGradient : blueBackgroundGradient,
-                    borderColor: this.showLabels ? 'rgba(255,255,255, .2)' : lineGradient,
+                    backgroundColor: this.showLabels ? largeChartBackgroundGradient : smallChartBackgroundGradient,
+                    borderColor: lineGradient,
                     borderWidth: this.showLabels ? 3 : 2,
                     pointBorderWidth: 1,
                     pointBackgroundColor: 'rgba(255, 255, 255, .7)'
