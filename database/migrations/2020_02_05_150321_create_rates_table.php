@@ -20,7 +20,7 @@ class CreateRatesTable extends Migration
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
 
             $table->float('price', 14, 8);
-            $table->date('date');
+            $table->datetime('date');
 
             $table->timestamps();
         });

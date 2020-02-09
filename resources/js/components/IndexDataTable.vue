@@ -24,7 +24,7 @@
                 <td class="lead text-center">No data found.</td>
             </tr>
             <tr v-for="currency in tableData" :key="currency.id" v-else class="currency-list">
-                <td>
+                <td class="p-0">
                     <a :href="`currency/${currency.code}`" class="d-flex">
                         <div
                             class="currency-logo d-flex align-items-center justify-content-center font-weight-bold">

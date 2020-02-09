@@ -71804,7 +71804,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
             var _vm = this
             var _h = _vm.$createElement
             var _c = _vm._self._c || _h
-            return _c("div", {staticClass: "d-flex justify-content-center my-3"}, [
+            return _c("div", {staticClass: "d-flex justify-content-center"}, [
                 _c("canvas", {
                     attrs: {id: _vm.graphId, height: this.showLabels ? "300" : "60"}
                 })
@@ -71926,7 +71926,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                                         "tr",
                                         {key: currency.id, staticClass: "currency-list"},
                                         [
-                                            _c("td", [
+                                            _c("td", {staticClass: "p-0"}, [
                                                 _c(
                                                     "a",
                                                     {
