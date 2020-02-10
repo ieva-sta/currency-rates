@@ -1,0 +1,63 @@
+.main-menu::-webkit-scrollbar {
+    display: none;
+}
+
+.main-menu {
+    scrollbar-width: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 55px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    transition: width .1s linear;
+    transform: translateZ(0) scale(1, 1);
+    z-index: 1000;
+}
+
+.main-menu:hover, nav.main-menu.expanded {
+    width: 250px;
+    overflow-x: visible;
+}
+
+.main-menu > ul li {
+    width: 250px;
+
+    &:hover {
+        background: lighten($primary, 10%);
+    }
+
+    &:first-child {
+        padding: .5em 0;
+
+        i {
+            color: #fff;
+        }
+    }
+
+    a {
+        transform: translateZ(0) scale(1, 1);
+        transition: all .2s linear;
+        padding-left: 10px;
+        color: rgba(#fff, .9);
+
+        .symbol {
+            font-size: 1.2em;
+            font-weight: 700;
+            width: 22%;
+        }
+
+        .currency-title {
+            width: 78%;
+        }
+    }
+}
+
+nav ul, nav li {
+    outline: 0;
+    margin: 0;
+    padding: 0;
+}
+

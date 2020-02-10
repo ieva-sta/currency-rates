@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  app:
+    container_name: currency_rates
+    build:
+      context: .
+      dockerfile: dockerfile-app
+    volumes:
+      - ./src/storage:/var/www/storage
+    env_file: '.env.example'
+    environment:
+      - VIRTUAL_HOST=currency-rates.local
+  web:
+    container_name: nginx_server
+    build:
+      context: .
+      dockerfile: dockerfile-web
+    volumes:
+      - ./storage/logs/:/var/log/nginx
+    ports:
+      - 8990:80
+  database:
+    container_name: mysql_database
+    image: mysql:5.7
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--innodb_use_native_aio=0']
+    restart: always
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_DATABASE=currency_rates
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 8991:3306
+  cache:
+    image: redis:3.0-alpine
+volumes:
+  dbdata:
