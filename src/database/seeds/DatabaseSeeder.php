@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CurrencyTableSeeder::class);
 
-        $date = Carbon::now();
+        $date = now();
         $month = $date->subMonth();
         $year = $month < 12 ? $date->year : $date->subYear();
 
