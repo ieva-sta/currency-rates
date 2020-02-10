@@ -20,6 +20,10 @@
 
 .index {
     background: rgba($primary, .1);
+
+    .data-table {
+        min-height: 90vh;
+    }
 }
 
 .fa-caret-up {

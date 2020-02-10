@@ -75,7 +75,7 @@ class GetCurrencyRates extends Command
                 }
             }
 
-            echo "Currency rates updated";
+            echo "Currency rates updated \n";
         } catch (Exception $e) {
             echo $e->getMessage();
         }

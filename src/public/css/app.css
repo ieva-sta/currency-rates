@@ -15673,6 +15673,10 @@ a.text-dark:focus, a.text-dark:hover {
     background: rgba(136, 147, 175, .1)
 }
 
+.index .data-table {
+    min-height: 90vh
+}
+
 .fa-caret-up {
     color: #52de97
 }

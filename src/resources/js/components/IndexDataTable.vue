@@ -1,5 +1,5 @@
 <template>
-    <div class="data-table p-5">
+    <div class="data-table d-flex flex-column p-5">
         <div class="d-flex justify-content-end pb-2">
             <div class="col-3">
                 <currency-select v-model="selected_currency"></currency-select>
@@ -63,7 +63,7 @@
             </tbody>
 
         </table>
-        <nav v-if="pagination && tableData.length > 0" class="d-flex flex-column align-items-center">
+        <nav v-if="pagination && tableData.length > 0" class="d-flex flex-column my-auto align-items-center">
             <ul class="pagination mb-1">
                 <li class="page-item" :class="{'disabled' : currentPage === 1}">
                     <a class="page-link" href="#" @click.prevent="changePage(currentPage - 1)">Previous</a>
