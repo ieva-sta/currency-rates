@@ -64,8 +64,7 @@ class CurrencyController extends Controller
     public function graph(Currency $currency, int $days): JsonResponse
     {
         $rates = $currency->rates()
-            ->where('date', '>=', Carbon::now()->subDays($days))
-            ->orderBy('date');
+            ->where('date', '>=', Carbon::now()->subDays($days));
 
         $labels = $rates->pluck('date')->map(function ($date) {
             return $date->format('d.m');

@@ -58,7 +58,6 @@ class GetArchivedCurrencyRates extends Command
             $cRates = $crawler->filterXPath('//default:CRates')->children();
             $items = $cRates->eq(1)->children();
 
-            $data = [];
             foreach ($items as $key => $item) {
                 $currency = $items->eq($key)->children()->eq(0)->text();
                 $rate = $items->eq($key)->children()->eq(1)->text();
