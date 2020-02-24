@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', 'CurrencyController@index')->name('currency.index');
+Route::view('/', 'currency.index');
 Route::get('currency/{currency}', 'CurrencyController@show')->name('currency.show');
 
 Route::get('currency/{currency}/graph/{days}', 'CurrencyController@graph')->name('currency.graph');

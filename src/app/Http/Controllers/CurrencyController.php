@@ -17,18 +17,6 @@ class CurrencyController extends Controller
 {
 
     /**
-     * @return Factory|View
-     */
-    public function index()
-    {
-        $currencies = Currency::has('rates')->paginate(7);
-
-        return view('currency.index')->with([
-            'currencies' => $currencies
-        ]);
-    }
-
-    /**
      * @param Currency $currency
      * @return Factory|View
      */
@@ -48,8 +36,6 @@ class CurrencyController extends Controller
      */
     public function getCurrencyData(Request $request)
     {
-        $query = Currency::has('rates')->orderBy($request->column, $request->order)->get();
-
         if ($request->column === 'rate') {
             $query = Currency::has('rates')
                 ->join('rates', 'rates.currency_id', '=', 'currencies.id')
@@ -57,6 +43,10 @@ class CurrencyController extends Controller
                 ->orderBy('rates.price', $request->order)
                 ->get()
                 ->unique();
+        }
+
+        if ($request->column !== 'rate') {
+            $query = Currency::has('rates')->orderBy($request->column, $request->order)->get();
         }
 
         $currencies = new LengthAwarePaginator($query->forPage($request->page, 5), $query->count(), 5);
